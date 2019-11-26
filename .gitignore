@@ -61,7 +61,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/ # this was interfering with nodejs stuff
 lib64/
 parts/
 sdist/
@@ -209,6 +209,7 @@ tools/MapAtmosFixer/MapAtmosFixer/bin/*
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
+/tools/stationgen/out.dmm
 
 #KDIFF3 files
 *.orig
