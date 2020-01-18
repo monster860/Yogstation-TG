@@ -26,6 +26,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/list/jobs
 	var/list/data_by_z = list()
 	var/list/last_update = list()
+	var/selected_z
 
 /datum/crewmonitor/New()
 	. = ..()
@@ -97,12 +98,20 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	if(!z)
 		var/turf/T = get_turf(user)
 		z = T.z
+	var/list/levels = get_multiz_accessible_levels(z)
+	if(!(selected_z in levels))
+		selected_z = z
 	var/list/zdata = update_data(z)
 	. = list()
 	var/datum/minimap/M = SSmapping.station_minimaps[1]
+	for(var/datum/minimap/check_minimap in SSmapping.station_minimaps)
+		if(check_minimap.z_level == selected_z)
+			M = check_minimap
 	.["sensors"] = zdata
 	.["link_allowed"] = isAI(user)
-	.["z"] = z
+	.["z"] = selected_z
+	.["z_list"] = levels
+	.["minimap_id"] = M.id
 	.["minx"] = M.minx
 	.["miny"] = M.miny
 	.["maxx"] = M.maxx
@@ -126,7 +135,10 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	var/area
 	var/pos_x
 	var/pos_y
+	var/pos_z
 	var/life_status
+
+	var/list/levels = get_multiz_accessible_levels(z)
 
 	for(var/mob/living/carbon/human/H in GLOB.carbon_list)
 		var/nanite_sensors = FALSE
@@ -134,7 +146,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 			nanite_sensors = TRUE
 		// Check if their z-level is correct and if they are wearing a uniform.
 		// Accept H.z==0 as well in case the mob is inside an object.
-		if ((H.z == 0 || H.z == z) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
+		
+		if ((H.z == 0 || (H.z in levels)) && (istype(H.w_uniform, /obj/item/clothing/under) || nanite_sensors))
 			U = H.w_uniform
 
 			// Are the suit sensors on?
@@ -142,7 +155,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				pos = H.z == 0 || (nanite_sensors || U.sensor_mode == SENSOR_COORDS) ? get_turf(H) : null
 
 				// Special case: If the mob is inside an object confirm the z-level on turf level.
-				if (H.z == 0 && (!pos || pos.z != z))
+				if (H.z == 0 && (!pos || !(pos.z in levels)))
 					continue
 
 				I = H.wear_id ? H.wear_id.GetID() : null
@@ -178,12 +191,14 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 					area = get_area_name(H, TRUE)
 					pos_x = pos.x
 					pos_y = pos.y
+					pos_z = pos.z
 				else
 					area = null
 					pos_x = null
 					pos_y = null
+					pos_z = null
 
-				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "can_track" = H.can_track(null))
+				results[++results.len] = list("name" = name, "assignment" = assignment, "ijob" = ijob, "life_status" = life_status, "oxydam" = oxydam, "toxdam" = toxdam, "burndam" = burndam, "brutedam" = brutedam, "area" = area, "pos_x" = pos_x, "pos_y" = pos_y, "pos_z" = pos_z, "can_track" = H.can_track(null))
 
 	data_by_z["[z]"] = sortTim(results,/proc/sensor_compare)
 	last_update["[z]"] = world.time
@@ -194,6 +209,9 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 	return a["ijob"] - b["ijob"]
 
 /datum/crewmonitor/ui_act(action,params)
+	if(action == "select_z")
+		selected_z = text2num(params["z"])
+		return
 	var/mob/living/silicon/ai/AI = usr
 	if(!istype(AI))
 		return

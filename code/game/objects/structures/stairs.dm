@@ -20,6 +20,7 @@
 	if(force_open_above)
 		force_open_above()
 		build_signal_listener()
+	AddComponent(/datum/component/vertical_parallax/stairs)
 	update_surrounding()
 	return ..()
 
@@ -55,9 +56,14 @@
 	return ..()
 
 /obj/structure/stairs/update_icon()
+	var/datum/component/vertical_parallax/stairs/S = GetComponent(/datum/component/vertical_parallax/stairs)
 	if(isTerminator())
+		if(!S)
+			AddComponent(/datum/component/vertical_parallax/stairs)
 		icon_state = "stairs_t"
 	else
+		if(S)
+			S.RemoveComponent()
 		icon_state = "stairs"
 
 /obj/structure/stairs/proc/stair_ascend(atom/movable/AM)
@@ -68,7 +74,11 @@
 		return
 	var/turf/target = get_step_multiz(get_turf(src), (dir|UP))
 	if(istype(target) && !target.can_zFall(AM, null, get_step_multiz(target, DOWN)))			//Don't throw them into a tile that will just dump them back down.
+		var/atom/movable/AM2 = AM.pulling
 		AM.forceMove(target)
+		if(AM2)
+			AM2.forceMove(target)
+			AM.start_pulling(AM2)
 
 /obj/structure/stairs/vv_edit_var(var_name, var_value)
 	. = ..()

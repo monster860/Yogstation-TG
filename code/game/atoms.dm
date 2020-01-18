@@ -6,7 +6,7 @@
   */
 /atom
 	layer = TURF_LAYER
-	plane = GAME_PLANE
+	plane = ADJUSTING_PLANE(GAME_PLANE)
 	var/level = 2
 
 	///If non-null, overrides a/an/some in all cases
@@ -477,6 +477,13 @@
   * as the buckle_message_cooldown has expired (50 ticks)
   */
 /atom/proc/relaymove(mob/user)
+	if(buckle_message_cooldown <= world.time)
+		buckle_message_cooldown = world.time + 50
+		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")
+	return
+
+// multiz variant
+/atom/proc/relaymove_multiz(mob/user)
 	if(buckle_message_cooldown <= world.time)
 		buckle_message_cooldown = world.time + 50
 		to_chat(user, "<span class='warning'>You can't move while buckled to [src]!</span>")

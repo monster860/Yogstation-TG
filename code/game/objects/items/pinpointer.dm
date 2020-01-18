@@ -87,7 +87,8 @@
 
 /obj/item/pinpointer/crew/proc/trackable(mob/living/carbon/human/H)
 	var/turf/here = get_turf(src)
-	if((H.z == 0 || H.z == here.z) && istype(H.w_uniform, /obj/item/clothing/under))
+	var/list/levels = get_multiz_accessible_levels(here.z)
+	if((H.z == 0 || (H.z in levels)) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 
 		// Suit sensors must be on maximum.
@@ -95,7 +96,7 @@
 			return FALSE
 
 		var/turf/there = get_turf(H)
-		return (H.z != 0 || (there && there.z == here.z))
+		return (H.z != 0 || (there && (there.z in levels)))
 
 	return FALSE
 
