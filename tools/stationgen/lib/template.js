@@ -126,7 +126,7 @@ class MapTemplate {
 				if(obj.istype("/turf")
 					|| obj.istype("/area")
 					|| obj.istype("/obj/effect/procedural_marker/anchor")
-					|| obj.istype("/obj/effect/procedural_marker/turf_check"))
+					|| obj.istype("/obj/effect/procedural_marker/turf_check")
 					|| obj.istype("/obj/effect/procedural_marker/turf_check_one"))
 					continue;
 				target.add_object(tx, ty, 1, this.make_rotated_copy(obj, angle));
@@ -255,7 +255,7 @@ class MapTemplate {
 				return false; // check area equality but only if it's a floor being placed on a floor.
 			}
 		}
-		for(let turf_check_passed of turf_checks_one.values) {
+		for(let turf_check_passed of turf_checks_one.values()) {
 			if(!turf_check_passed) return false;
 		}
 		return true;
