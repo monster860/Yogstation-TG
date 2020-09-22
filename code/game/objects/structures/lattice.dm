@@ -119,11 +119,6 @@
 		C.deconstruct()
 	..()
 
-/obj/structure/lattice/catwalk/glass
-	name = "glass catwalk"
-	icon = 'icons/obj/smooth_structures/catwalk_glass.dmi'
-	icon_state = "glass_lattice"
-
 /obj/structure/lattice/catwalk/clockwork
 	name = "clockwork catwalk"
 	icon = 'icons/obj/smooth_structures/catwalk_clockwork.dmi'

@@ -244,3 +244,24 @@
 
 /turf/open/floor/plating/snowed/smoothed/icemoon
 	initial_gas_mix = ICEMOON_DEFAULT_ATMOS
+
+/turf/open/floor/plating/glass
+	name = "glass catwalk"
+	icon = 'icons/obj/smooth_structures/catwalk_glass.dmi'
+	icon_state = "glass_lattice"
+	smooth = SMOOTH_TRUE
+	canSmoothWith = null
+
+/turf/open/floor/plating/glass/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/open/floor/plating/glass/LateInitialize()
+	for(var/turf/T in range(1, src)) // range because we include self
+		T.add_adjacent_openspace()
+
+/turf/open/floor/plating/glass/Destroy()
+	vis_contents.len = 0
+	for(var/turf/T in range(1, src)) // range because we include self
+		T.remove_adjacent_openspace()
+	return ..()

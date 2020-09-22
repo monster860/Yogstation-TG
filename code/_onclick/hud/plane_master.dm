@@ -9,6 +9,7 @@
 	var/multiz_level = 0
 	var/multiz_tint_factor = 0.75 // making lower z-levels darker than higher ones is like a depth cue or something I think.
 	var/multiz_scale = 1
+	var/render_target_prefix
 
 /obj/screen/plane_master/proc/Show(override)
 	alpha = override || show_alpha
@@ -23,6 +24,8 @@
 /obj/screen/plane_master/proc/set_level(level_num = 0, appearance_only = FALSE)
 	if(!appearance_only)
 		plane = ADJUSTED_PLANE(initial(plane), level_num)
+		if(render_target_prefix)
+			render_target = "[render_target_prefix][level_num]"
 	var/scale = 1 - (level_num / 16)
 	var/tint = 255 * (multiz_tint_factor ** level_num)
 	color = rgb(tint,tint,tint)
@@ -47,7 +50,7 @@
 	S.transform = matrix(1/multiz_scale,0,0,0,1/multiz_scale,0)
 	// Each plane that's lit gets a lighting proxy. This is to make sure that the lighting of different z-levels don't interfere with each other.
 	S.plane = plane
-	S.render_source = "*light_[multiz_level]"
+	S.render_source = "[LIGHTING_RENDER_TARGET][multiz_level]"
 
 /*/obj/screen/plane_master/openspace
 	name = "open space plane master"
@@ -116,18 +119,15 @@
 	plane = LIGHTING_PLANE
 	//blend_mode = BLEND_MULTIPLY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-
-/obj/screen/plane_master/lighting/Initialize()
-	. = ..()
-	filters += filter(type="alpha", render_source=EMISSIVE_RENDER_TARGET, flags=MASK_INVERSE)
-	filters += filter(type="alpha", render_source=EMISSIVE_UNBLOCKABLE_RENDER_TARGET, flags=MASK_INVERSE)
+	render_target_prefix = LIGHTING_RENDER_TARGET
 
 /obj/screen/plane_master/lighting/animate_level_change()
 	return
 
 /obj/screen/plane_master/lighting/set_level(level_num)
 	. = ..()
-	render_target = "*light_[level_num]"
+	filters += filter(type="alpha", render_source="[EMISSIVE_RENDER_TARGET][level_num]", flags=MASK_INVERSE)
+	filters += filter(type="alpha", render_source="[EMISSIVE_UNBLOCKABLE_RENDER_TARGET][level_num]", flags=MASK_INVERSE)
 
 /obj/screen/plane_master/lighting/backdrop(mob/mymob)
 	var/obj/screen/S = mymob.overlay_fullscreen("lighting_backdrop_lit_l[multiz_level]", /obj/screen/fullscreen/lighting_backdrop/lit)
@@ -145,11 +145,11 @@
 	name = "emissive plane master"
 	plane = EMISSIVE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_RENDER_TARGET
+	render_target_prefix = EMISSIVE_RENDER_TARGET
 
-/obj/screen/plane_master/emissive/Initialize()
+/obj/screen/plane_master/emissive/set_level(level_num)
 	. = ..()
-	filters += filter(type="alpha", render_source=EMISSIVE_BLOCKER_RENDER_TARGET, flags=MASK_INVERSE)
+	filters += filter(type="alpha", render_source="[EMISSIVE_BLOCKER_RENDER_TARGET][level_num]", flags=MASK_INVERSE)
 
 /**
   * Things placed on this always mask the lighting plane. Doesn't render directly.
@@ -162,7 +162,7 @@
 	name = "unblockable emissive plane master"
 	plane = EMISSIVE_UNBLOCKABLE_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_UNBLOCKABLE_RENDER_TARGET
+	render_target_prefix = EMISSIVE_UNBLOCKABLE_RENDER_TARGET
 
 /**
   * Things placed on this layer mask the emissive layer. Doesn't render directly
@@ -173,7 +173,7 @@
 	name = "emissive blocker plane master"
 	plane = EMISSIVE_BLOCKER_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	render_target = EMISSIVE_BLOCKER_RENDER_TARGET
+	render_target_prefix = EMISSIVE_BLOCKER_RENDER_TARGET
 
 ///Contains space parallax
 /obj/screen/plane_master/parallax

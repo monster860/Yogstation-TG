@@ -42,6 +42,25 @@
 		T.remove_adjacent_openspace()
 	return ..()
 
+// Basically, if the turf below us has a space gas mixture, we should also use a space gas mixture.
+// This massively reduces the performance cost of openspace turfs, since most of them are above space tiles,
+// or above openspace turfs that are above space tiles, and so on.
+/turf/open/openspace/proc/update_spaciness()
+	var/turf/open/T = below()
+	var/turf/open/A = above()
+	if(T)
+		var/should_be_space = (istype(T) && istype(T.air, /datum/gas_mixture/immutable))
+		if(should_be_space && T.air != air)
+			air = T.air
+			update_air_ref()
+			if(A)
+				A.update_multiz()
+		else if(!should_be_space && istype(air, /datum/gas_mixture/immutable))
+			air = new /datum/gas_mixture/turf
+			update_air_ref()
+			if(A)
+				A.update_multiz()
+
 /turf/open/openspace/update_multiz(prune_on_fail = FALSE, init = FALSE)
 	. = ..()
 	var/turf/T = below()
@@ -52,6 +71,7 @@
 		return FALSE
 	if(init)
 		vis_contents += T
+	update_spaciness()
 	return TRUE
 
 /turf/open/openspace/zAirIn()
