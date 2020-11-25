@@ -315,7 +315,6 @@
 	log_message("Launched [mechsyringe] from [src], targeting [target].", LOG_MECHA)
 	var/mob/originaloccupant = chassis.occupant
 	spawn(0)
-		src = null //if src is deleted, still process the syringe
 		for(var/i=0, i<6, i++)
 			if(!mechsyringe)
 				break

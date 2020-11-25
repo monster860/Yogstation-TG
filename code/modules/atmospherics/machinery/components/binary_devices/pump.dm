@@ -164,7 +164,7 @@
 	broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/components/binary/pump/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/binary/pump/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

@@ -265,7 +265,7 @@
 	desc = "A lightweight foamed metal wall."
 	gender = PLURAL
 	max_integrity = 20
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 
 /obj/structure/foamedmetal/Initialize()
 	. = ..()

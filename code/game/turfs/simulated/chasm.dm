@@ -119,7 +119,7 @@
 	baseturfs = /turf/open/chasm/magic
 	light_range = 1.9
 	light_power = 0.65
-	CanAtmosPass = ATMOS_PASS_NO
+	atmos_pass_mode = ATMOS_PASS_NO
 
 /turf/open/chasm/magic/Initialize()
 	. = ..()

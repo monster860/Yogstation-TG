@@ -5,7 +5,7 @@
 	icon_state = "dorm_taken"
 	req_access = list(ACCESS_SECURITY) //REQACCESS TO ACCESS ALL STORED ITEMS
 	density = FALSE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 100
 	active_power_usage = 2500
 	var/list/stored_items = list()

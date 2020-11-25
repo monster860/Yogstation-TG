@@ -59,7 +59,7 @@
 	if((!can_buckle && !force) || M.buckled || (buckled_mobs.len >= max_buckled_mobs) || (buckle_requires_restraints && !M.restrained()) || M == src)
 		return FALSE
 	M.buckling = src
-	if(!M.can_buckle() && !force)
+	if(!M.can_buckle_mob() && !force)
 		if(M == usr)
 			to_chat(M, "<span class='warning'>You are unable to buckle yourself to [src]!</span>")
 		else
@@ -97,7 +97,7 @@
 			M.IgniteMob()
 
 /atom/movable/proc/unbuckle_mob(mob/living/buckled_mob, force=FALSE)
-	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle() || force))
+	if(istype(buckled_mob) && buckled_mob.buckled == src && (buckled_mob.can_unbuckle_mob() || force))
 		. = buckled_mob
 		buckled_mob.buckled = null
 		buckled_mob.anchored = initial(buckled_mob.anchored)

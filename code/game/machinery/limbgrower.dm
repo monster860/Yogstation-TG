@@ -10,7 +10,7 @@
 	icon = 'icons/obj/machines/limbgrower.dmi'
 	icon_state = "limbgrower_idleoff"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/limbgrower

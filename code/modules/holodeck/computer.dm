@@ -251,7 +251,7 @@
 		if(damaged)
 			current_cd += HOLODECK_DMG_CD
 	active = (A != offline_program)
-	use_power = active + IDLE_POWER_USE
+	power_use = active + IDLE_POWER_USE
 
 	for(var/e in effects)
 		var/obj/effect/holodeck_effect/HE = e

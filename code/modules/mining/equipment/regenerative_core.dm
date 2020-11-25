@@ -13,7 +13,7 @@
 		to_chat(user, "<span class='warning'>The stabilizer only works on certain types of monster organs, generally regenerative in nature.</span>")
 		return ..()
 
-	C.preserved()
+	C.make_preserved()
 	to_chat(user, "<span class='notice'>You inject the [M] with the stabilizer. It will no longer go inert.</span>")
 	qdel(src)
 
@@ -37,7 +37,7 @@
 	if(!preserved)
 		go_inert()
 
-/obj/item/organ/regenerative_core/proc/preserved(implanted = 0)
+/obj/item/organ/regenerative_core/proc/make_preserved(implanted = 0)
 	inert = FALSE
 	preserved = TRUE
 	update_icon()
@@ -137,6 +137,6 @@
 	..()
 	desc = "[src] has become inert. It has decayed, and is completely useless."
 
-/obj/item/organ/regenerative_core/legion/preserved(implanted = 0)
+/obj/item/organ/regenerative_core/legion/make_preserved(implanted = 0)
 	..()
 	desc = "[src] has been stabilized. It is preserved, allowing you to use it to heal completely without danger of decay."

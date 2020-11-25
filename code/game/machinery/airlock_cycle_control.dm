@@ -46,7 +46,7 @@
 	desc = "A machine designed to control the operation of cycling airlocks"
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "aac"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 4
 	active_power_usage = 8
 	power_channel = ENVIRON

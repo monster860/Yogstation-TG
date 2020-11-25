@@ -3,7 +3,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
 	desc = "A charging dock for energy based weaponry."
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 4
 	active_power_usage = 250
 	circuit = /obj/item/circuitboard/machine/recharger
@@ -43,10 +43,10 @@
 	charging = new_charging
 	if (new_charging)
 		START_PROCESSING(SSmachines, src)
-		use_power = ACTIVE_POWER_USE
+		power_use = ACTIVE_POWER_USE
 		update_icon(scan = TRUE)
 	else
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 		update_icon()
 
 /obj/machinery/recharger/attackby(obj/item/G, mob/user, params)

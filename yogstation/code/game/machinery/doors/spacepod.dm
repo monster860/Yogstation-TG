@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	var/id = 1.0
-	CanAtmosPass = ATMOS_PASS_NO
+	atmos_pass_mode = ATMOS_PASS_NO
 
 /obj/structure/spacepoddoor/Initialize()
 	..()

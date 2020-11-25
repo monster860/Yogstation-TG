@@ -121,7 +121,8 @@
 		var/charge_amt = 50
 		if(L.mind?.holy_role == HOLY_ROLE_HIGHPRIEST)
 			charge_amt *= 2
-		R.cell?.charge += charge_amt
+		if(R.cell)
+			R.cell.charge += charge_amt
 		R.visible_message("<span class='notice'>[user] charges [R] with the power of [GLOB.deity]!</span>")
 		to_chat(R, "<span class='boldnotice'>You are charged by the power of [GLOB.deity]!</span>")
 		SEND_SIGNAL(R, COMSIG_ADD_MOOD_EVENT, "blessing", /datum/mood_event/blessing)

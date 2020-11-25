@@ -17,7 +17,7 @@ obj/effects/variation/sec
 	)
 	var/closet = /obj/structure/closet/secure_closet/brig/cell
 
-	switch(choice())
+	switch(get_choice())
 		if(1)
 			//variation 1 , default;  bed left side
 			place(0, 0, bed)
@@ -47,7 +47,7 @@ obj/effects/variation/sec
 	)
 	var/stool = /obj/structure/chair/stool
 	
-	switch(choice())
+	switch(get_choice())
 		if(1)
 			//variation 1 ; Default . 
 			place(0, 1, bed)

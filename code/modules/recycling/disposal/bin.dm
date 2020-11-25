@@ -14,7 +14,7 @@
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/full_pressure = FALSE
 	var/pressure_charging = TRUE
-	var/flush = 0	// true if flush handle is pulled
+	var/flush_pulled = 0	// true if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null // the attached pipe trunk
 	var/flushing = 0	// true if flushing in progress
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
@@ -47,11 +47,11 @@
 	trunk = locate() in loc
 	if(!trunk)
 		pressure_charging = FALSE
-		flush = FALSE
+		flush_pulled = FALSE
 	else
 		if(initial(pressure_charging))
 			pressure_charging = TRUE
-		flush = initial(flush)
+		flush_pulled = initial(flush_pulled)
 		trunk.linked = src // link the pipe trunk to self
 
 /obj/machinery/disposal/Destroy()
@@ -76,7 +76,7 @@
 
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
-	if(!pressure_charging && !full_pressure && !flush)
+	if(!pressure_charging && !full_pressure && !flush_pulled)
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
 			panel_open = !panel_open
 			I.play_tool_sound(src)
@@ -163,7 +163,7 @@
 /obj/machinery/disposal/attack_paw(mob/user)
 	if(stat & BROKEN)
 		return
-	flush = !flush
+	flush_pulled = !flush_pulled
 	update_icon()
 
 
@@ -195,7 +195,7 @@
 	air_contents = new()
 	H.start(src)
 	flushing = FALSE
-	flush = FALSE
+	flush_pulled = FALSE
 
 /obj/machinery/disposal/proc/newHolderDestination(obj/structure/disposalholder/H)
 	for(var/obj/item/smallDelivery/O in src)
@@ -284,7 +284,7 @@
 	. = ..()
 	if(!user.canUseTopic(src, TRUE))
 		return
-	flush = !flush
+	flush_pulled = !flush_pulled
 	update_icon()
 
 /obj/machinery/disposal/bin/ui_state(mob/user)
@@ -300,7 +300,7 @@
 
 /obj/machinery/disposal/bin/ui_data(mob/user)
 	var/list/data = list()
-	data["flush"] = flush
+	data["flush"] = flush_pulled
 	data["full_pressure"] = full_pressure
 	data["pressure_charging"] = pressure_charging
 	data["panel_open"] = panel_open
@@ -314,12 +314,12 @@
 
 	switch(action)
 		if("handle-0")
-			flush = FALSE
+			flush_pulled = FALSE
 			update_icon()
 			. = TRUE
 		if("handle-1")
 			if(!panel_open)
-				flush = TRUE
+				flush_pulled = TRUE
 				update_icon()
 			. = TRUE
 		if("pump-0")
@@ -359,11 +359,11 @@
 	cut_overlays()
 	if(stat & BROKEN)
 		pressure_charging = FALSE
-		flush = FALSE
+		flush_pulled = FALSE
 		return
 
 	//flush handle
-	if(flush)
+	if(flush_pulled)
 		add_overlay("dispover-handle")
 
 	//only handle is shown if no power
@@ -399,7 +399,7 @@
 
 	updateDialog()
 
-	if(flush && air_contents.return_pressure() >= SEND_PRESSURE) // flush can happen even without power
+	if(flush_pulled && air_contents.return_pressure() >= SEND_PRESSURE) // flush can happen even without power
 		do_flush()
 
 	if(stat & NOPOWER) // won't charge if no power

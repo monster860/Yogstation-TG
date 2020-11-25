@@ -44,7 +44,7 @@
 		dat += "<a href='byond://?src=[REF(src)];setlaws=1'>Configure Directives</a><br>"
 		dat += "<br>"
 		dat += "<h3>Device Settings</h3><br>"
-		if(pai.radio)
+		if(pai.silicon_radio)
 			dat += "<b>Radio Uplink</b><br>"
 			dat += "Transmit: <A href='byond://?src=[REF(src)];toggle_transmit=1'>\[[pai.can_transmit? "Disable" : "Enable"] Radio Transmission\]</a><br>"
 			dat += "Receive: <A href='byond://?src=[REF(src)];toggle_receive=1'>\[[pai.can_receive? "Disable" : "Enable"] Radio Reception\]</a><br>"
@@ -104,7 +104,7 @@
 				pai.can_transmit = !pai.can_transmit
 			else //receiving
 				pai.can_receive = !pai.can_receive
-			pai.radio.wires.cut(transmit_holder)//wires.cut toggles cut and uncut states
+			pai.silicon_radio.wires.cut(transmit_holder)//wires.cut toggles cut and uncut states
 			transmit_holder = (transmitting ? pai.can_transmit : pai.can_receive) //recycling can be fun!
 			to_chat(usr,"<span class='warning'>You [transmit_holder ? "enable" : "disable"] your pAI's [transmitting ? "outgoing" : "incoming"] radio transmissions!</span>")
 			to_chat(pai,"<span class='warning'>Your owner has [transmit_holder ? "enabled" : "disabled"] your [transmitting ? "outgoing" : "incoming"] radio transmissions!</span>")

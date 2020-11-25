@@ -61,7 +61,7 @@
 	max_integrity = 200
 	smooth = SMOOTH_TRUE
 	var/resintype = null
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 
 
 /obj/structure/alien/resin/Initialize(mapload)

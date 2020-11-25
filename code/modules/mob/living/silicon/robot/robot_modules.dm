@@ -194,7 +194,7 @@
 	R.module = RM
 	R.update_module_innate()
 	RM.rebuild_modules()
-	R.radio.recalculateChannels()
+	R.silicon_radio.recalculateChannels()
 
 	INVOKE_ASYNC(RM, .proc/do_transform_animation)
 	qdel(src)

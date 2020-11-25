@@ -138,7 +138,7 @@
 		new/obj/item/toy/plush/goatplushie/angry/guardgoat(location)
 
 /obj/item/toy/plush/goatplushie/angry/kinggoat/attackby(/obj/item/reagent_containers/food/snacks/grown/cabbage/C,mob/living/user,params)
-		var/C = /obj/item/reagent_containers/food/snacks/grown/cabbage
+		C = /obj/item/reagent_containers/food/snacks/grown/cabbage
 		user.visible_message("<span class='notice'>[user] watches as [src] takes a bite out of the cabbage!</span>", "<span class='notice'>[src]'s fur now starts glowing it seems it has ascended!</span>")
 		playsound(src, 'sound/items/eatfood.ogg', 50, 1)
 		qdel(C)

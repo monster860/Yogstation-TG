@@ -4,7 +4,7 @@
 	var/quality
 
 	var/canFail
-	var/announce
+	var/should_announce
 
 	var/originalName
 	var/list/affixes
@@ -12,13 +12,13 @@
 
 	var/static/list/affixListing
 
-/datum/component/fantasy/Initialize(quality, list/affixes = list(), canFail=FALSE, announce=FALSE)
+/datum/component/fantasy/Initialize(quality, list/affixes = list(), canFail=FALSE, should_announce=FALSE)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
 	src.quality = quality || randomQuality()
 	src.canFail = canFail
-	src.announce = announce
+	src.should_announce = should_announce
 
 	src.affixes = affixes
 	appliedComponents = list()
@@ -42,12 +42,12 @@
 	if(newComp)
 		quality += newComp.quality
 		canFail = newComp.canFail
-		announce = newComp.announce
+		should_announce = newComp.should_announce
 	else
 		arguments.len = 5 // This is done to replicate what happens when an arglist smaller than the necessary arguments is given
 		quality += arguments[1]
 		canFail = arguments[4] || canFail
-		announce = arguments[5] || announce
+		should_announce = arguments[5] || should_announce
 	modify()
 
 /datum/component/fantasy/proc/randomQuality()
@@ -106,7 +106,7 @@
 		place.visible_message("<span class='danger'>[parent] <span class='inathneq_large'>violently glows blue</span> for a while, then evaporates.</span>")
 		master.burn()
 		return
-	else if(announce)
+	else if(should_announce)
 		announce()
 
 	master.name = newName

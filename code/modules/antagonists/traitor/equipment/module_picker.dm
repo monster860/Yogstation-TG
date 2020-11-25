@@ -24,7 +24,7 @@
 
 	for(var/path in GLOB.malf_modules)
 		var/datum/AI_Module/AM = new path
-		if((AM.power_type == /datum/action/innate/ai) && !AM.upgrade)
+		if((AM.power_type == /datum/action/innate/ai) && !AM.passive_upgrade)
 			continue
 		if(!filtered_modules[AM.category])
 			filtered_modules[AM.category] = list()
@@ -102,7 +102,7 @@
 
 	var/datum/action/innate/ai/action = locate(AM.power_type) in AI.actions
 	// Give the power and take away the money.
-	if(AM.upgrade) //upgrade and upgrade() are separate, be careful!
+	if(AM.passive_upgrade) // Look at this person who named a proc and a var the same, and all the rest, giving me a hard time. Screw you for that--> // upgrade and upgrade() are separate, be careful!
 		AM.upgrade(AI)
 		possible_modules[AM.category] -= AM
 		if(AM.unlock_text)

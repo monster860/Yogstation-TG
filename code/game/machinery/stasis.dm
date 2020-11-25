@@ -104,14 +104,14 @@
 	playsound(src, 'sound/effects/spray.ogg', 5, TRUE, 2, frequency = freq)
 	target.apply_status_effect(STATUS_EFFECT_STASIS, null, TRUE)
 	target.ExtinguishMob()
-	use_power = ACTIVE_POWER_USE
+	power_use = ACTIVE_POWER_USE
 	if(obj_flags & EMAGGED)
 		to_chat(target, "<span class='warning'>Your limbs start to feel numb...</span>")
 
 /obj/machinery/stasis/proc/thaw_them(mob/living/target)
 	target.remove_status_effect(STATUS_EFFECT_STASIS)
 	if(target == occupant)
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 
 /obj/machinery/stasis/post_buckle_mob(mob/living/L)
 	if(!can_be_occupant(L))
@@ -140,7 +140,7 @@
 
 /obj/machinery/stasis/process()
 	if( !( occupant && isliving(occupant) && check_nap_violations() ) )
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 		return
 	var/mob/living/L_occupant = occupant
 	if(stasis_running())

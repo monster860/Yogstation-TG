@@ -61,7 +61,7 @@
 	var/datum/gas_mixture/cabin_air
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port = null
 
-	var/obj/item/radio/mech/radio
+	var/obj/item/radio/mech/the_radio
 	var/list/trackers = list()
 
 	var/max_temperature = 25000
@@ -282,11 +282,11 @@
 	return cabin_air
 
 /obj/mecha/proc/add_radio()
-	radio = new(src)
-	radio.name = "[src] radio"
-	radio.icon = icon
-	radio.icon_state = icon_state
-	radio.subspace_transmission = TRUE
+	the_radio = new(src)
+	the_radio.name = "[src] radio"
+	the_radio.icon = icon
+	the_radio.icon_state = icon_state
+	the_radio.subspace_transmission = TRUE
 
 /obj/mecha/proc/can_use(mob/user)
 	if(user != occupant)
@@ -466,8 +466,8 @@
 /obj/mecha/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
 	if(speaker == occupant)
-		if(radio?.broadcasting)
-			radio.talk_into(speaker, text, , spans, message_language, message_mods)
+		if(the_radio?.broadcasting)
+			the_radio.talk_into(speaker, text, , spans, message_language, message_mods)
 		//flick speech bubble
 		var/list/speech_bubble_recipients = list()
 		for(var/mob/M in get_hearers_in_view(7,src))

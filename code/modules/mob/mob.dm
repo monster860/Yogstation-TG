@@ -941,11 +941,11 @@
 	return 9
 
 ///can the mob be buckled to something by default?
-/mob/proc/can_buckle()
+/mob/proc/can_buckle_mob()
 	return 1
 
 ///can the mob be unbuckled from something by default?
-/mob/proc/can_unbuckle()
+/mob/proc/can_unbuckle_mob()
 	return 1
 
 ///Can the mob interact() with an atom?

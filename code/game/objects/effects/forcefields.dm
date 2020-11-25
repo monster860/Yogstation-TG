@@ -5,7 +5,7 @@
 	anchored = TRUE
 	opacity = 0
 	density = TRUE
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 	var/timeleft = 300 //Set to 0 for permanent forcefields (ugh)
 
 /obj/effect/forcefield/Initialize()
@@ -21,7 +21,7 @@
 	name = "glowing wall"
 	icon = 'icons/effects/cult_effects.dmi'
 	icon_state = "cultshield"
-	CanAtmosPass = ATMOS_PASS_NO
+	atmos_pass_mode = ATMOS_PASS_NO
 	timeleft = 200
 
 ///////////Mimewalls///////////

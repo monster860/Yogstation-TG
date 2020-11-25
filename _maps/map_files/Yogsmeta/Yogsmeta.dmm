@@ -63735,7 +63735,7 @@
 	c_tag = "Turbine Vent";
 	dir = 4;
 	network = list("turbine");
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/space,
 /area/space/nearstation)

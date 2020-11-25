@@ -61,7 +61,6 @@ GLOBAL_LIST_INIT(rod_recipes, list ( \
 						 "<span class='notice'>You shape [src] into metal with [W].</span>", \
 						 "<span class='italics'>You hear welding.</span>")
 			var/obj/item/stack/rods/R = src
-			src = null
 			var/replace = (user.get_inactive_held_item()==R)
 			R.use(2)
 			if (!R && replace)

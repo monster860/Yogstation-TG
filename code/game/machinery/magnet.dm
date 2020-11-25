@@ -11,7 +11,7 @@
 	desc = "A device that uses station power to create points of magnetic energy."
 	level = 1		// underfloor
 	layer = LOW_OBJ_LAYER
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 50
 
 	var/freq = FREQ_MAGNETS		// radio frequency
@@ -156,10 +156,10 @@
 
 	// Update power usage:
 	if(on)
-		use_power = ACTIVE_POWER_USE
+		power_use = ACTIVE_POWER_USE
 		active_power_usage = electricity_level*15
 	else
-		use_power = NO_POWER_USE
+		power_use = NO_POWER_USE
 
 	update_icon()
 
@@ -194,7 +194,7 @@
 	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
 	density = FALSE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 45
 	var/frequency = FREQ_MAGNETS
 	var/code = 0

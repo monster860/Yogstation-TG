@@ -17,7 +17,7 @@
 /obj/item/candle/Initialize()
 	. = ..()
 	if(start_lit)
-		light()
+		do_light()
 
 /obj/item/candle/update_icon()
 	icon_state = "candle[(wax > 400) ? ((wax > 750) ? 1 : 2) : 3][lit ? "_lit" : ""]"
@@ -25,19 +25,19 @@
 /obj/item/candle/attackby(obj/item/W, mob/user, params)
 	var/msg = W.ignition_effect(src, user)
 	if(msg)
-		light(msg)
+		do_light(msg)
 	else
 		return ..()
 
 /obj/item/candle/fire_act(exposed_temperature, exposed_volume)
 	if(!lit)
-		light() //honk
+		do_light() //honk
 	return ..()
 
 /obj/item/candle/is_hot()
 	return lit * heat
 
-/obj/item/candle/proc/light(show_message)
+/obj/item/candle/proc/do_light(show_message)
 	if(!lit)
 		lit = TRUE
 		if(show_message)

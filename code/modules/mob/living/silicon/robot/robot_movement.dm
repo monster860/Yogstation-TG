@@ -2,7 +2,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	if(ionpulse())
+	if(do_ionpulse())
 		return TRUE
 	return FALSE
 

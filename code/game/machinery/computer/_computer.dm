@@ -3,7 +3,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
 	max_integrity = 200

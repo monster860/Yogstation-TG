@@ -283,6 +283,7 @@
 			. += "<span class='inathneq_small'>It can revive Servants at a cost of <b>[revive_cost]</b> vitality.</span>"
 
 /obj/effect/clockwork/sigil/vitality/sigil_effects(mob/living/L)
+	set waitfor = FALSE
 	if((is_servant_of_ratvar(L) && L.suiciding) || sigil_active)
 		return
 	animate(src, alpha = 255, time = 10, flags = ANIMATION_END_NOW) //we may have a previous animation going. finish it first, then do this one without delay.
@@ -342,7 +343,6 @@
 						GLOB.clockwork_vitality -= revival_cost
 				break
 			if(!L.client || L.client.is_afk())
-				set waitfor = FALSE
 				var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [L.name], an inactive clock cultist?", ROLE_SERVANT_OF_RATVAR, null, ROLE_SERVANT_OF_RATVAR, 50, L)
 				if(LAZYLEN(candidates))
 					var/mob/dead/observer/C = pick(candidates)

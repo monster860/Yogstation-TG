@@ -6,7 +6,7 @@
 	circuit = /obj/item/circuitboard/machine/nanite_programmer
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "nanite_programmer"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	anchored = TRUE
 	density = TRUE
 

@@ -35,7 +35,7 @@ Possible to do for anyone motivated enough:
 	plane = FLOOR_PLANE
 	flags_1 = HEAR_1
 	req_access = list(ACCESS_KEYCARD_AUTH) //Used to allow for forced connecting to other (not secure) holopads. Anyone can make a call, though.
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	max_integrity = 300
@@ -62,7 +62,7 @@ Possible to do for anyone motivated enough:
 	/// Currently recording
 	var/record_mode = FALSE
 	/// Recording start time
-	var/record_start = 0
+	var/record_start_time = 0
 	/// User that inititiated the recording
 	var/record_user
 	/// Replay hologram
@@ -440,7 +440,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 /obj/machinery/holopad/proc/SetLightsAndPower()
 	var/total_users = LAZYLEN(masters) + LAZYLEN(holo_calls)
-	use_power = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	power_use = total_users > 0 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	active_power_usage = HOLOPAD_PASSIVE_POWER_USAGE + (HOLOGRAM_POWER_USAGE * total_users)
 	if(total_users || replay_mode)
 		set_light(2)
@@ -589,7 +589,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 		return
 	disk.record = new
 	record_mode = TRUE
-	record_start = world.time
+	record_start_time = world.time
 	record_user = user
 	disk.record.set_caller_image(user)
 
@@ -611,7 +611,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 			continue
 		current_delay += entry[2]
 
-	var/time_delta = world.time - record_start - current_delay
+	var/time_delta = world.time - record_start_time - current_delay
 
 	if(time_delta >= 1)
 		disk.record.entries += list(list(HOLORECORD_DELAY,time_delta))

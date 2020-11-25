@@ -1,5 +1,5 @@
 /obj/item/modular_computer/proc/can_install_component(obj/item/computer_hardware/H, mob/living/user = null)
-	if(!H.can_install(src, user))
+	if(!H.check_can_install(src, user))
 		return FALSE
 
 	if(H.w_class > max_hardware_size)

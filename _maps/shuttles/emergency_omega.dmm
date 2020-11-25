@@ -503,7 +503,7 @@
 "aM" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	use_power = 0
+	power_use = 0
 	},
 /turf/closed/wall/mineral/titanium/nodiagonal,
 /area/shuttle/escape)
@@ -647,7 +647,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = -26;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4

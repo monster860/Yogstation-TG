@@ -18,7 +18,7 @@
 "e" = (
 /obj/machinery/computer/emergency_shuttle{
 	dir = 4;
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/floor/plating/asteroid,
 /area/shuttle/escape/meteor)

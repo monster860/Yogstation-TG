@@ -5677,7 +5677,7 @@
 /area/ruin/unpowered/syndicate_lava_base/bar)
 "EY" = (
 /obj/machinery/telecomms/relay/preset/ruskie{
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/floor/circuit/green/telecomms,
 /area/ruin/unpowered/syndicate_lava_base/telecomms)

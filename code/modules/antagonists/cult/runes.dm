@@ -576,6 +576,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 		. += "<b>Revives Remaining:</b> [round(revive_number/SOULS_TO_REVIVE)]"
 
 /obj/effect/rune/raise_dead/invoke(var/list/invokers)
+	set waitfor = FALSE
 	var/turf/T = get_turf(src)
 	var/mob/living/mob_to_revive
 	var/list/potential_revive_mobs = list()
@@ -616,7 +617,6 @@ structure_check() searches for nearby cultist structures required for the invoca
 		var/damage4invoker = abs(user.health * 0.4)
 		user.adjustBruteLoss(damage4invoker)
 	if(!mob_to_revive.client || mob_to_revive.client.is_afk())
-		set waitfor = FALSE
 		var/list/mob/dead/observer/candidates = pollCandidatesForMob("Do you want to play as a [mob_to_revive.name], an inactive blood cultist?", ROLE_CULTIST, null, ROLE_CULTIST, 50, mob_to_revive)
 		if(LAZYLEN(candidates))
 			var/mob/dead/observer/C = pick(candidates)
@@ -661,7 +661,7 @@ structure_check() searches for nearby cultist structures required for the invoca
 	invocation = "Khari'd! Eske'te tannin!"
 	icon_state = "4"
 	color = RUNE_COLOR_DARKRED
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 	var/datum/timedevent/density_timer
 	var/recharging = FALSE
 
@@ -1099,8 +1099,8 @@ structure_check() searches for nearby cultist structures required for the invoca
 	qdel(src)
 
 /obj/effect/rune/apocalypse/proc/image_handler(var/list/images, duration)
-	var/end = world.time + duration
 	set waitfor = 0
+	var/end = world.time + duration
 	while(end>world.time)
 		for(var/image/I in images)
 			I.override = FALSE

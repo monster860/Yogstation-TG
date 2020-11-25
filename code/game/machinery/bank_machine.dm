@@ -6,20 +6,20 @@
 
 	var/siphoning = FALSE
 	var/next_warning = 0
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_channel = RADIO_CHANNEL_COMMON
 	var/minimum_time_between_warnings = 400
 	var/syphoning_credits = 0
 
 /obj/machinery/computer/bank_machine/Initialize()
 	. = ..()
-	radio = new(src)
-	radio.subspace_transmission = TRUE
-	radio.canhear_range = 0
-	radio.recalculateChannels()
+	the_radio = new(src)
+	the_radio.subspace_transmission = TRUE
+	the_radio.canhear_range = 0
+	the_radio.recalculateChannels()
 
 /obj/machinery/computer/bank_machine/Destroy()
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	. = ..()
 
 /obj/machinery/computer/bank_machine/attackby(obj/item/I, mob/user)
@@ -57,7 +57,7 @@
 		if(next_warning < world.time && prob(15))
 			var/area/A = get_area(loc)
 			var/message = "Unauthorized credit withdrawal underway in [A.map_name]!!"
-			radio.talk_into(src, message, radio_channel)
+			the_radio.talk_into(src, message, radio_channel)
 			next_warning = world.time + minimum_time_between_warnings
 
 /obj/machinery/computer/bank_machine/ui_interact(mob/user, datum/tgui/ui)

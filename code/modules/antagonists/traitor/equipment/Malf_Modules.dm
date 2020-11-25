@@ -128,7 +128,7 @@ GLOBAL_LIST_INIT(malf_modules, subtypesof(/datum/AI_Module))
 	/// If the module gives an active ability, use this. Mutually exclusive with upgrade.
 	var/power_type = /datum/action/innate/ai
 	/// If the module gives a passive upgrade, use this. Mutually exclusive with power_type.
-	var/upgrade = FALSE
+	var/passive_upgrade = FALSE
 	/// Text shown when an ability is unlocked
 	var/unlock_text = "<span class='notice'>Hello World!</span>"
 	/// Sound played when an ability is unlocked

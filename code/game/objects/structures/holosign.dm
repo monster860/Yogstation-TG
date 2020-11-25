@@ -99,7 +99,7 @@
 	icon_state = "holo_firelock"
 	density = FALSE
 	anchored = TRUE
-	CanAtmosPass = ATMOS_PASS_NO
+	atmos_pass_mode = ATMOS_PASS_NO
 	alpha = 150
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_LIGHT_INSULATION
@@ -174,7 +174,7 @@
 	take_damage(P.damage, BRUTE, "melee", 1)	//Yeah no this doesn't get projectile resistance.
 	return BULLET_ACT_HIT
 
-/obj/structure/holosign/barrier/cyborg/hacked/proc/cooldown()
+/obj/structure/holosign/barrier/cyborg/hacked/proc/reset_cooldown()
 	shockcd = FALSE
 
 /obj/structure/holosign/barrier/cyborg/hacked/attack_hand(mob/living/user)
@@ -186,7 +186,7 @@
 			var/mob/living/M = user
 			M.electrocute_act(15,"Energy Barrier", safety=1)
 			shockcd = TRUE
-			addtimer(CALLBACK(src, .proc/cooldown), 5)
+			addtimer(CALLBACK(src, .proc/reset_cooldown), 5)
 
 /obj/structure/holosign/barrier/cyborg/hacked/Bumped(atom/movable/AM)
 	if(shockcd)
@@ -198,4 +198,4 @@
 	var/mob/living/M = AM
 	M.electrocute_act(15,"Energy Barrier", safety=1)
 	shockcd = TRUE
-	addtimer(CALLBACK(src, .proc/cooldown), 5)
+	addtimer(CALLBACK(src, .proc/reset_cooldown), 5)

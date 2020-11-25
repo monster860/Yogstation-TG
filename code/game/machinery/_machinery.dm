@@ -5,7 +5,7 @@ Overview:
    of 'Destroy' removes reference to src machine in global 'machines list'.
 
 Class Variables:
-   use_power (num)
+   power_use (num)
       current state of auto power use.
       Possible Values:
          NO_POWER_USE -- no auto power use
@@ -50,7 +50,7 @@ Class Procs:
          return:1 -- if object is powered
          return:0 -- if object is not powered.
 
-      Default definition uses 'use_power', 'power_channel', 'active_power_usage',
+      Default definition uses 'power_use', 'power_channel', 'active_power_usage',
       'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
 
    powered(chan = EQUIP)         'modules/power/power.dm'
@@ -97,7 +97,7 @@ Class Procs:
 	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT
 
 	var/stat = 0
-	var/use_power = IDLE_POWER_USE
+	var/power_use = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
@@ -175,7 +175,7 @@ Class Procs:
 
 /obj/machinery/emp_act(severity)
 	. = ..()
-	if(use_power && !stat && !(. & EMP_PROTECT_SELF))
+	if(power_use && !stat && !(. & EMP_PROTECT_SELF))
 		use_power(7500/severity)
 		new /obj/effect/temp_visual/emp(loc)
 
@@ -227,9 +227,9 @@ Class Procs:
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
 		return 0
-	if(use_power == 1)
+	if(power_use == 1)
 		use_power(idle_power_usage,power_channel)
-	else if(use_power >= 2)
+	else if(power_use >= 2)
 		use_power(active_power_usage,power_channel)
 	return 1
 

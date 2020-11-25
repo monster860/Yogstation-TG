@@ -8,7 +8,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	circuit = /obj/item/circuitboard/computer/pandemic
-	use_power = TRUE
+	power_use = TRUE
 	idle_power_usage = 20
 	resistance_flags = ACID_PROOF
 	var/wait

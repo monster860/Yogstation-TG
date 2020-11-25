@@ -219,7 +219,7 @@
 		return	//why are we considering someone we don't love?
 
 	scorned.Add(Brutus)
-	Brutus.scorned_by(src)
+	Brutus.get_scorned_by(src)
 
 	lover = null
 	Brutus.lover = null	//feeling's mutual
@@ -235,7 +235,7 @@
 
 	update_desc()
 
-/obj/item/toy/plush/proc/scorned_by(obj/item/toy/plush/Outmoded)
+/obj/item/toy/plush/proc/get_scorned_by(obj/item/toy/plush/Outmoded)
 	scorned_by.Add(Outmoded)
 
 /obj/item/toy/plush/proc/new_lover(obj/item/toy/plush/Juliet)

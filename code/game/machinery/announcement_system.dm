@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 
 	circuit = /obj/item/circuitboard/machine/announcement_system
 
-	var/obj/item/radio/headset/radio
+	var/obj/item/radio/headset/the_radio
 	var/arrival = "%PERSON has signed up as %RANK"
 	var/arrivalToggle = 1
 	var/newhead = "%PERSON, %RANK, is the department head."
@@ -50,7 +50,7 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		add_overlay(errorlight)
 
 /obj/machinery/announcement_system/Destroy()
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	GLOB.announcement_systems -= src //"OH GOD WHY ARE THERE 100,000 LISTED ANNOUNCEMENT SYSTEMS?!!"
 	return ..()
 
@@ -88,10 +88,10 @@ GLOBAL_LIST_EMPTY(announcement_systems)
 		message = "The arrivals shuttle has been damaged. Docking for repairs..."
 
 	if(channels.len == 0)
-		radio.talk_into(src, message, null)
+		the_radio.talk_into(src, message, null)
 	else
 		for(var/channel in channels)
-			radio.talk_into(src, message, channel)
+			the_radio.talk_into(src, message, channel)
 
 //config stuff
 

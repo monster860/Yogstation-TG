@@ -411,8 +411,10 @@ SUBSYSTEM_DEF(timer)
 		prev.next = next
 		next.prev = prev
 	else
-		prev?.next = null
-		next?.prev = null
+		if(prev)
+			prev.next = null
+		if(next)
+			next.prev = null
 	prev = next = null
 
 /datum/timedevent/proc/bucketJoin()

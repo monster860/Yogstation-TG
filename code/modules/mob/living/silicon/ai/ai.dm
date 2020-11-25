@@ -152,7 +152,7 @@
 	aiPDA.name = real_name + " (" + aiPDA.ownjob + ")"
 
 	aiMulti = new(src)
-	radio = new /obj/item/radio/headset/silicon/ai(src)
+	silicon_radio = new /obj/item/radio/headset/silicon/ai(src)
 	aicamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	deploy_action.Grant(src)
@@ -763,12 +763,12 @@
 		return
 
 	to_chat(src, "Accessing Subspace Transceiver control...")
-	if (radio)
-		radio.interact(src)
+	if (silicon_radio)
+		silicon_radio.interact(src)
 
 /mob/living/silicon/ai/proc/set_syndie_radio()
-	if(radio)
-		radio.make_syndie()
+	if(silicon_radio)
+		silicon_radio.make_syndie()
 
 /mob/living/silicon/ai/proc/set_automatic_say_channel()
 	set name = "Set Auto Announce Mode"
@@ -801,7 +801,7 @@
 		to_chat(src, "You have been downloaded to a mobile storage device. Remote device connection severed.")
 		to_chat(user, "<span class='boldnotice'>Transfer successful</span>: [name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
 
-/mob/living/silicon/ai/can_buckle()
+/mob/living/silicon/ai/can_buckle_mob()
 	return 0
 
 /mob/living/silicon/ai/incapacitated(ignore_restraints = FALSE, ignore_grab = FALSE, check_immobilized = FALSE, ignore_stasis = FALSE)

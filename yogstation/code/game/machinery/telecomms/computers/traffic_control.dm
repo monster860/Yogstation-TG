@@ -17,7 +17,7 @@
 	var/storedcode = ""			// code stored
 	var/obj/item/card/id/auth = null
 	var/list/access_log = list()
-	var/process = 0
+	var/process_toggle = 0
 	circuit = /obj/item/circuitboard/computer/telecomms/comm_traffic
 
 	req_access = list(ACCESS_TCOM_ADMIN)
@@ -53,8 +53,8 @@
 			viewingcode.Remove(editingcode)
 		return
 
-	process = !process
-	if(!process)
+	process_toggle = !process_toggle
+	if(!process_toggle)
 		return
 
 	// loop if there's someone manning the keyboard

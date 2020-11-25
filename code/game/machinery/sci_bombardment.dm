@@ -25,7 +25,7 @@
 	icon = 'icons/obj/machines/lam.dmi'
 	icon_state = "LAM_Base"
 	light_color = LIGHT_COLOR_PINK
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 500
 	active_power_usage = 5000
 	power_channel = EQUIP
@@ -39,7 +39,7 @@
 	var/tick = 0
 	var/obj/item/transfer_valve/scibomb //Right here, JC
 	var/turf/dest
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_freq = FREQ_SCIENCE
 	var/lavaland
 	var/tcoords
@@ -51,12 +51,12 @@
 		if(is_mining_level(Z))
 			lavaland = Z
 			break
-	radio = new /obj/item/radio/(src)
-	radio.frequency = radio_freq
+	the_radio = new /obj/item/radio/(src)
+	the_radio.frequency = radio_freq
 	update_icon()
 
 /obj/machinery/sci_bombardment/Destroy()
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	return ..()
 
 /obj/machinery/sci_bombardment/update_icon()
@@ -94,7 +94,7 @@
 * the last 5 seconds. Spawn(10) loops back to the beginning by
 * triggering the proc again after 10 deciseconds.
 */
-/obj/machinery/sci_bombardment/proc/countdown()
+/obj/machinery/sci_bombardment/proc/do_countdown()
 	if(stopcount) //Abort launch
 		tick = countdown
 		return
@@ -103,15 +103,15 @@
 		stopcount = TRUE
 		tick = countdown
 		fire_ttv()
-		radio.talk_into(src, "Payload successfully deployed.",)
-		use_power = 1
+		the_radio.talk_into(src, "Payload successfully deployed.",)
+		power_use = 1
 		return
 	else if(tick <= 5)
-		use_power = 2
-		radio.talk_into(src, "[tick]...",)
+		power_use = 2
+		the_radio.talk_into(src, "[tick]...",)
 	playsound(src, 'sound/effects/clock_tick.ogg', 80, 0)
 	spawn(10)
-		countdown()
+		do_countdown()
 
 /**
 * Launches TTV from LAM to turf
@@ -193,13 +193,13 @@
 		if("lock")//Check for RD/Silicon access. Lock/Unlock console if valid
 			if(iscyborg(usr) || isAI(usr))
 				locked = !locked
-				radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [usr].",)
+				the_radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [usr].",)
 			else
 				var/mob/M = usr
 				var/obj/item/card/id/I = M.get_idcard(TRUE)
 				if(check_access(I) && (30 in I.access))
 					locked = !locked
-					radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
+					the_radio.talk_into(src, "Controls [locked ? "locked" : "unlocked"] by [I.registered_name].",)
 				else
 					to_chat(usr, "<span class='warning'>Access denied. Please seek assistance from station AI or Research Director.</span>")
 			update_icon()
@@ -229,11 +229,11 @@
 				return
 			stopcount = !stopcount
 			if (!stopcount)
-				radio.talk_into(src, "Beginning launch on coordinates [tcoords]. ETA: [countdown] seconds.",)
+				the_radio.talk_into(src, "Beginning launch on coordinates [tcoords]. ETA: [countdown] seconds.",)
 				tick = countdown + 1
 				countdown()
 			else
-				radio.talk_into(src, "Launch sequence aborted by [usr]. Adjusting mainframe...",)
+				the_radio.talk_into(src, "Launch sequence aborted by [usr]. Adjusting mainframe...",)
 				reset_lam()
 			. = TRUE
 		if("target")//Acknowledges GPS signal selected by user and saves it as place to send TTV
@@ -248,11 +248,11 @@
 					dest = pos
 					break
 			if(!dest)
-				radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of [targetdest] required before trying again. Adjusting mainframe...",)
+				the_radio.talk_into(src, "ERROR: Telemetry mismatch. Isolation of [targetdest] required before trying again. Adjusting mainframe...",)
 				targetdest = initial(targetdest)
 				tcoords = initial(tcoords)
 				. = TRUE
-			radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
+			the_radio.talk_into(src, "Target set to [targetdest] at coordinates [tcoords]. [tcoords ? "Adjusting mainframe..." : ""]",)
 			playsound(src, 'sound/effects/servostep.ogg', 100, 1)
 			reset_lam()
 			. = TRUE

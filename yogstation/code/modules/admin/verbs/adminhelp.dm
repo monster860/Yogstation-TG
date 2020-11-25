@@ -93,7 +93,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/ticket_log/proc/toSanitizedString()
 	return "[gametime] - [user] - [text]"
 
-/datum/ticket_log/proc/toString()
+/datum/ticket_log/toString()
 	return "[gametime] - [isAdminComment() ? "<font color='red'>" : ""]<b>[istype(user, /client) ? key_name_params(user, 0, 0, null, parent) : user]</b>[isAdminComment() ? "</font>" : ""] - [text]"
 
 /datum/ticket_log/proc/toAdminString()

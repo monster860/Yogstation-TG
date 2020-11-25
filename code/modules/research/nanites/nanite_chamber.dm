@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/nanite_chamber.dmi'
 	icon_state = "nanite_chamber"
 	layer = ABOVE_WINDOW_LAYER
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	anchored = TRUE
 	density = TRUE
 	idle_power_usage = 50

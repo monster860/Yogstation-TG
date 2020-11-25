@@ -21,23 +21,23 @@
 	switch(streak)
 		if("drop")
 			streak = ""
-			drop(A,D)
+			do_drop(A,D)
 			return 1
 		if("strike")
 			streak = ""
-			strike(A,D)
+			do_strike(A,D)
 			return 1
 		if("kick")
 			streak = ""
-			kick(A,D)
+			do_kick(A,D)
 			return 1
 		if("throw")
 			streak = ""
-			throw_wrassle(A,D)
+			do_throw_wrassle(A,D)
 			return 1
 		if("slam")
 			streak = ""
-			slam(A,D)
+			do_slam(A,D)
 			return 1
 	return 0
 
@@ -125,7 +125,7 @@
 	log_combat(A, D, "punched with wrestling")
 	..()
 
-/datum/martial_art/wrestling/proc/throw_wrassle(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/do_throw_wrassle(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
 		return
 	if(!A.pulling || A.pulling != D)
@@ -204,7 +204,7 @@
 	if (D)
 		animate(D, transform = null, time = 1, loop = 0)
 
-/datum/martial_art/wrestling/proc/slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/do_slam(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
 		return
 	if(!A.pulling || A.pulling != D)
@@ -316,7 +316,7 @@
 	if (A && (T && isturf(T) && get_dist(A, T) <= 1))
 		A.forceMove(T)
 
-/datum/martial_art/wrestling/proc/strike(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/do_strike(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
 		return
 	var/turf/T = get_turf(A)
@@ -333,7 +333,7 @@
 		D.Unconscious(20)
 	log_combat(A, D, "headbutted")
 
-/datum/martial_art/wrestling/proc/kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/do_kick(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
 		return
 	A.emote("scream")
@@ -350,7 +350,7 @@
 		D.throw_at(T, 3, 2)
 	log_combat(A, D, "roundhouse-kicked")
 
-/datum/martial_art/wrestling/proc/drop(mob/living/carbon/human/A, mob/living/carbon/human/D)
+/datum/martial_art/wrestling/proc/do_drop(mob/living/carbon/human/A, mob/living/carbon/human/D)
 	if(!D)
 		return
 	var/obj/surface = null

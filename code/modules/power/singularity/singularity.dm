@@ -15,7 +15,7 @@
 	var/allowed_size = 1
 	var/contained = 1 //Are we going to move around?
 	var/energy = 100 //How strong are we?
-	var/dissipate = 1 //Do we lose energy over time?
+	var/dissipate_enabled = 1 //Do we lose energy over time?
 	var/dissipate_delay = 10
 	var/dissipate_track = 0
 	var/dissipate_strength = 1 //How much energy do we lose?
@@ -163,7 +163,7 @@
 	investigate_log("was created at [AREACOORD(T)]. [count?"":"<font color='red'>No containment fields were active</font>"]", INVESTIGATE_SINGULO)
 
 /obj/singularity/proc/dissipate()
-	if(!dissipate)
+	if(!dissipate_enabled)
 		return
 	if(dissipate_track >= dissipate_delay)
 		src.energy -= dissipate_strength
@@ -234,7 +234,7 @@
 			pixel_y = -128
 			grav_pull = 10
 			consume_range = 4
-			dissipate = 0 //It cant go smaller due to e loss
+			dissipate_enabled = 0 //It cant go smaller due to e loss
 		if(STAGE_SIX) //This only happens if a stage 5 singulo consumes a supermatter shard.
 			current_size = STAGE_SIX
 			icon = 'icons/effects/352x352.dmi'
@@ -243,7 +243,7 @@
 			pixel_y = -160
 			grav_pull = 15
 			consume_range = 5
-			dissipate = 0
+			dissipate_enabled = 0
 	if(current_size == allowed_size)
 		investigate_log("<font color='red'>grew to size [current_size]</font>", INVESTIGATE_SINGULO)
 		return 1

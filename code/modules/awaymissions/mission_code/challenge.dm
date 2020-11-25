@@ -24,7 +24,7 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | FIRE_PROOF | ACID_PROOF
 
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 

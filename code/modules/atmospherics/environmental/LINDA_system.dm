@@ -1,8 +1,8 @@
-/atom/var/CanAtmosPass = ATMOS_PASS_YES
-/atom/var/CanAtmosPassVertical = ATMOS_PASS_YES
+/atom/var/atmos_pass_mode = ATMOS_PASS_YES
+/atom/var/atmos_pass_mode_vertical = ATMOS_PASS_YES
 
 /atom/proc/CanAtmosPass(turf/T)
-	switch (CanAtmosPass)
+	switch (atmos_pass_mode)
 		if (ATMOS_PASS_PROC)
 			return ATMOS_PASS_YES
 		if (ATMOS_PASS_DENSITY)
@@ -10,11 +10,11 @@
 		else
 			return CanAtmosPass
 
-/turf/CanAtmosPass = ATMOS_PASS_NO
-/turf/CanAtmosPassVertical = ATMOS_PASS_NO
+/turf/atmos_pass_mode = ATMOS_PASS_NO
+/turf/atmos_pass_mode_vertical = ATMOS_PASS_NO
 
-/turf/open/CanAtmosPass = ATMOS_PASS_PROC
-/turf/open/CanAtmosPassVertical = ATMOS_PASS_PROC
+/turf/open/atmos_pass_mode = ATMOS_PASS_PROC
+/turf/open/atmos_pass_mode_vertical = ATMOS_PASS_PROC
 
 /turf/open/CanAtmosPass(turf/T, vertical = FALSE)
 	var/dir = vertical? get_dir_multiz(src, T) : get_dir(src, T)

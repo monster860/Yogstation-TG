@@ -232,8 +232,8 @@
 /// just check density
 #define ATMOS_PASS_DENSITY -2
 
-#define CANATMOSPASS(A, O) ( A.CanAtmosPass == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.CanAtmosPass == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPass ) )
-#define CANVERTICALATMOSPASS(A, O) ( A.CanAtmosPassVertical == ATMOS_PASS_PROC ? A.CanAtmosPass(O, TRUE) : ( A.CanAtmosPassVertical == ATMOS_PASS_DENSITY ? !A.density : A.CanAtmosPassVertical ) )
+#define CANATMOSPASS(A, O) ( A.atmos_pass_mode == ATMOS_PASS_PROC ? A.CanAtmosPass(O) : ( A.atmos_pass_mode == ATMOS_PASS_DENSITY ? !A.density : A.atmos_pass_mode ) )
+#define CANVERTICALATMOSPASS(A, O) ( A.atmos_pass_mode_vertical == ATMOS_PASS_PROC ? A.CanAtmosPass(O, TRUE) : ( A.atmos_pass_mode_vertical == ATMOS_PASS_DENSITY ? !A.density : A.atmos_pass_mode_vertical ) )
 
 //OPEN TURF ATMOS
 /// the default air mix that open turfs spawn

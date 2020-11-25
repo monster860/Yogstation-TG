@@ -430,10 +430,10 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 	L[++L.len] = list("			", "[action_click.update("[SDQL2_IS_RUNNING? "HALT" : "RUN"]")]", REF(action_click))
 	return L
 
-/datum/SDQL2_query/proc/delete_click()
+/datum/SDQL2_query/proc/handle_delete_click()
 	admin_del(usr)
 
-/datum/SDQL2_query/proc/action_click()
+/datum/SDQL2_query/proc/handle_action_click()
 	if(SDQL2_IS_RUNNING)
 		admin_halt(usr)
 	else
@@ -1203,7 +1203,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		log_game("[key_name(usr)] non-holder clicked on a statclick! ([src])")
 		return
 	var/datum/SDQL2_query/Q = target
-	Q.delete_click()
+	Q.handle_delete_click()
 
 /obj/effect/statclick/SDQL2_action/Click()
 	if(!usr.client?.holder)
@@ -1211,7 +1211,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		log_game("[key_name(usr)] non-holder clicked on a statclick! ([src])")
 		return
 	var/datum/SDQL2_query/Q = target
-	Q.action_click()
+	Q.handle_action_click()
 
 /obj/effect/statclick/SDQL2_VV_all
 	name = "VIEW VARIABLES"

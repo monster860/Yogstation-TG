@@ -11,7 +11,7 @@
 	var/harvested_name = "shortened mushrooms"
 	var/harvested_desc = "Some quickly regrowing mushrooms, formerly known to be quite large."
 	var/needs_sharp_harvest = TRUE
-	var/harvest = /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings
+	var/harvest_type = /obj/item/reagent_containers/food/snacks/grown/ash_flora/shavings
 	var/harvest_amount_low = 1
 	var/harvest_amount_high = 3
 	var/harvest_time = 60
@@ -42,7 +42,7 @@
 				msg = harvest_message_high
 			to_chat(user, "<span class='notice'>[msg]</span>")
 		for(var/i in 1 to rand_harvested)
-			new harvest(get_turf(src))
+			new harvest_type(get_turf(src))
 
 	icon_state = "[base_icon]p"
 	name = harvested_name

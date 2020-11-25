@@ -209,7 +209,7 @@
 	name = "luxury shuttle ticket field"
 	density = FALSE //allows shuttle airlocks to close, nothing but an approved passenger gets past CanPass
 	locked = TRUE
-	use_power = FALSE
+	power_use = FALSE
 	resistance_flags = INDESTRUCTIBLE
 	var/threshold = 500
 	var/static/list/approved_passengers = list()

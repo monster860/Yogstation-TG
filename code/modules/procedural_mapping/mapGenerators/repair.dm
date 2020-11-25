@@ -17,6 +17,7 @@
 	allowAtomsOnSpace = TRUE
 
 /datum/mapGeneratorModule/reload_station_map/generate()
+	set waitfor = FALSE
 	if(!istype(mother, /datum/mapGenerator/repair/reload_station_map))
 		return
 	var/datum/mapGenerator/repair/reload_station_map/mother1 = mother
@@ -38,7 +39,6 @@
 
 	for(var/L in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], SSmapping.station_start),
 						locate(bounds[MAP_MAXX], bounds[MAP_MAXY], z_offset - 1)))
-		set waitfor = FALSE
 		var/turf/B = L
 		atoms += B
 		for(var/A in B)

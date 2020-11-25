@@ -10,7 +10,7 @@
 	power_channel = ENVIRON
 	max_integrity = 350
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 	flags_1 = PREVENT_CLICK_UNDER_1
 	damage_deflection = 10
 
@@ -389,12 +389,12 @@
 	for(var/obj/mecha/M in get_turf(src))
 		M.take_damage(DOOR_CRUSH_DAMAGE)
 
-/obj/machinery/door/proc/autoclose()
+/obj/machinery/door/proc/autoclose_proc()
 	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)
 		close()
 
 /obj/machinery/door/proc/autoclose_in(wait)
-	addtimer(CALLBACK(src, .proc/autoclose), wait, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/autoclose_proc), wait, TIMER_UNIQUE | TIMER_NO_HASH_WAIT | TIMER_OVERRIDE)
 
 /obj/machinery/door/proc/requiresID()
 	return TRUE

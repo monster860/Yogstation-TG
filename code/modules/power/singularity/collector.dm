@@ -13,7 +13,7 @@
 	anchored = FALSE
 	density = TRUE
 	req_access = list(ACCESS_ENGINE_EQUIP)
-//	use_power = NO_POWER_USE
+//	power_use = NO_POWER_USE
 	max_integrity = 350
 	integrity_failure = 80
 	circuit = /obj/item/circuitboard/machine/rad_collector

@@ -23,7 +23,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	density = TRUE
 	move_resist = INFINITY
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	var/sprite_number = 0
 
@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 // Generator an admin can spawn
 //
 /obj/machinery/gravity_generator/main/station/admin
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 
 //
 // Main Generator with the main code
@@ -114,7 +114,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 	active_power_usage = 3000
 	power_channel = ENVIRON
 	sprite_number = 8
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	interaction_flags_machine = INTERACT_MACHINE_ALLOW_SILICON | INTERACT_MACHINE_OFFLINE
 	var/on = TRUE
 	var/breaker = 1
@@ -280,7 +280,7 @@ GLOBAL_LIST_EMPTY(gravity_generators) // We will keep track of this by adding ne
 /obj/machinery/gravity_generator/main/proc/set_state(new_state)
 	charging_state = POWER_IDLE
 	on = new_state
-	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	power_use = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	// Sound the alert if gravity was just enabled or disabled.
 	var/alert = FALSE
 	if(SSticker.IsRoundInProgress())

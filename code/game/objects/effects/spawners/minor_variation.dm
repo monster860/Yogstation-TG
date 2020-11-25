@@ -8,7 +8,7 @@ This is mainly to prevent creating new map files when creating smaller variation
 	icon = 'icons/effects/landmarks_variation.dmi'
 	icon_state = "generic_green"
 	var/variations // number of variations
-	var/choice // chosen variation by choice()
+	var/choice // chosen variation by get_choice()
 	var/chosen // has a choice been made for this place?
 	var/location_place // location of placement calculated from reference
 	var/ref_x // x of reference
@@ -46,14 +46,14 @@ This is mainly to prevent creating new map files when creating smaller variation
 				new item(location_place)
 	
 
-/obj/effect/variation/proc/choice()
+/obj/effect/variation/proc/get_choice()
 	if(!choice)
 		choice = 1
 	if(!chosen)
 		ref_x = src.x
 		ref_y = src.y
 		ref_z = src.z
-		qdel(src) // deletes the landmark after storing location values in choice() so it doesn't show up on the final product
+		qdel(src) // deletes the landmark after storing location values in get_choice() so it doesn't show up on the final product
 		chosen = TRUE
 		choice = rand(1, variations)
 		log_world("Chosen variation [choice] out of [variations] for [name]. Spawning on [ref_x],[ref_y],[ref_z].")

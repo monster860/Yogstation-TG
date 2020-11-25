@@ -160,17 +160,17 @@
 		master.on_slave_link(src)
 	return TRUE
 
-/datum/component/storage/proc/master()
+/datum/component/storage/proc/get_master()
 	if(master == src)
 		return			//infinite loops yo.
 	return master
 
 /datum/component/storage/proc/real_location()
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	return master? master.real_location() : null
 
 /datum/component/storage/proc/canreach_react(datum/source, list/next)
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	if(!master)
 		return
 	. = COMPONENT_BLOCK_REACH
@@ -416,7 +416,7 @@
 /datum/component/storage/proc/emp_act(datum/source, severity)
 	if(emp_shielded)
 		return
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	master.emp_act(source, severity)
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
@@ -442,7 +442,7 @@
 /datum/component/storage/proc/_removal_reset(atom/movable/thing)
 	if(!istype(thing))
 		return FALSE
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	if(!istype(master))
 		return FALSE
 	return master._removal_reset(thing)
@@ -455,7 +455,7 @@
 /datum/component/storage/proc/remove_from_storage(atom/movable/AM, atom/new_location)
 	if(!istype(AM))
 		return FALSE
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	if(!istype(master))
 		return FALSE
 	return master.remove_from_storage(AM, new_location)
@@ -632,7 +632,7 @@
 		if(!stop_messages)
 			to_chat(M, "<span class='warning'>\the [I] is stuck to your hand, you can't put it in \the [host]!</span>")
 		return FALSE
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	if(!istype(master))
 		return FALSE
 	return master.slave_can_insert_object(src, I, stop_messages, M)
@@ -645,7 +645,7 @@
 //such as when picking up all the items on a tile with one click.
 /datum/component/storage/proc/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)
 	var/atom/parent = src.parent
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	if(!istype(master))
 		return FALSE
 	if(silent)

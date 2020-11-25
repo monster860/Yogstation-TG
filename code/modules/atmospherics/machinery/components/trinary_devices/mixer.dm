@@ -176,7 +176,7 @@
 	node1_concentration = newValue / 100
 	node2_concentration = 1 - node1_concentration
 
-/obj/machinery/atmospherics/components/trinary/mixer/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/trinary/mixer/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

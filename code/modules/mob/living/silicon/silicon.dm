@@ -24,7 +24,7 @@
 	var/obj/item/camera/siliconcam/aicamera = null //photography
 	hud_possible = list(ANTAG_HUD, DIAG_STAT_HUD, DIAG_HUD, DIAG_TRACK_HUD)
 
-	var/obj/item/radio/borg/radio = null //All silicons make use of this, with (p)AI's creating headsets
+	var/obj/item/radio/borg/silicon_radio = null //All silicons make use of this, with (p)AI's creating headsets
 
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
@@ -63,7 +63,7 @@
 	return //we use a different hud
 
 /mob/living/silicon/Destroy()
-	radio = null
+	silicon_radio = null
 	aicamera = null
 	QDEL_NULL(builtInCamera)
 	GLOB.silicon_mobs -= src
@@ -335,18 +335,18 @@
 	popup.open()
 
 /mob/living/silicon/proc/set_autosay() //For allowing the AI and borgs to set the radio behavior of auto announcements (state laws, arrivals).
-	if(!radio)
+	if(!silicon_radio)
 		to_chat(src, "Radio not detected.")
 		return
 
 	//Ask the user to pick a channel from what it has available.
-	var/Autochan = input("Select a channel:") as null|anything in list("Default","None") + radio.channels
+	var/Autochan = input("Select a channel:") as null|anything in list("Default","None") + silicon_radio.channels
 
 	if(!Autochan)
 		return
 	if(Autochan == "Default") //Autospeak on whatever frequency to which the radio is set, usually Common.
 		radiomod = ";"
-		Autochan += " ([radio.frequency])"
+		Autochan += " ([silicon_radio.frequency])"
 	else if(Autochan == "None") //Prevents use of the radio for automatic annoucements.
 		radiomod = ""
 	else	//For department channels, if any, given by the internal radio.

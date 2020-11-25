@@ -7,7 +7,7 @@
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "sp_base"
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 	max_integrity = 150
@@ -280,7 +280,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 250
 	max_integrity = 200
 	integrity_failure = 100

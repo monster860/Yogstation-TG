@@ -496,10 +496,10 @@
 /mob/living/simple_animal/slime/pet
 	docile = 1
 
-/mob/living/simple_animal/slime/can_unbuckle()
+/mob/living/simple_animal/slime/can_unbuckle_mob()
 	return 0
 
-/mob/living/simple_animal/slime/can_buckle()
+/mob/living/simple_animal/slime/can_buckle_mob()
 	return 0
 
 /mob/living/simple_animal/slime/get_mob_buckling_height(mob/seat)

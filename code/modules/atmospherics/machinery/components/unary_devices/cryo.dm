@@ -25,7 +25,7 @@
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/reagent_transfer = 0
 
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_key = /obj/item/encryptionkey/headset_med
 	var/radio_channel = RADIO_CHANNEL_MEDICAL
 
@@ -42,11 +42,11 @@
 	. = ..()
 	initialize_directions = dir
 
-	radio = new(src)
-	radio.keyslot = new radio_key
-	radio.subspace_transmission = TRUE
-	radio.canhear_range = 0
-	radio.recalculateChannels()
+	the_radio = new(src)
+	the_radio.keyslot = new radio_key
+	the_radio.subspace_transmission = TRUE
+	the_radio.canhear_range = 0
+	the_radio.recalculateChannels()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Exited(atom/movable/AM, atom/newloc)
 	var/oldoccupant = occupant
@@ -74,7 +74,7 @@
 		. += "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	QDEL_NULL(beaker)
 	return ..()
 
@@ -204,7 +204,7 @@
 		if(autoeject) // Eject if configured.
 			msg += " Auto ejecting patient now."
 			open_machine()
-		radio.talk_into(src, msg, radio_channel)
+		the_radio.talk_into(src, msg, radio_channel)
 		return
 
 	var/datum/gas_mixture/air1 = airs[1]

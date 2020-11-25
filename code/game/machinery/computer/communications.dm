@@ -58,7 +58,7 @@
 	return ACCESS_CAPTAIN in authorize_access
 
 /// Are we a silicon, OR logged in?
-/obj/machinery/computer/communications/proc/authenticated(mob/user)
+/obj/machinery/computer/communications/proc/is_authenticated(mob/user)
 	if (issilicon(user))
 		return TRUE
 	return authenticated
@@ -90,7 +90,7 @@
 
 	switch (action)
 		if ("answerMessage")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 
 			var/answer_index = params["answer"]
@@ -109,7 +109,7 @@
 			message.answered = answer_index
 			message.answer_callback.InvokeAsync()
 		if ("callShuttle")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 			var/reason = trim(params["reason"], MAX_MESSAGE_LEN)
 			if (length(reason) < CALL_SHUTTLE_REASON_LENGTH)
@@ -151,7 +151,7 @@
 
 			alert_level_tick += 1
 		if ("deleteMessage")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 			var/message_index = text2num(params["message"])
 			if (!message_index)
@@ -213,7 +213,7 @@
 			state = STATE_MAIN
 		if ("recallShuttle")
 			// AIs cannot recall the shuttle
-			if (!authenticated(usr) || issilicon(usr))
+			if (!is_authenticated(usr) || issilicon(usr))
 				return
 			SSshuttle.cancelEvac(usr)
 		if ("requestNukeCodes")
@@ -260,7 +260,7 @@
 
 			COOLDOWN_START(src, important_action_cooldown, IMPORTANT_ACTION_COOLDOWN)
 		if ("setState")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 			if (!(params["state"] in approved_states))
 				return
@@ -269,7 +269,7 @@
 			set_state(usr, params["state"])
 			playsound(src, "terminal_type", 50, FALSE)
 		if ("setStatusMessage")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 			var/line_one = reject_bad_text(params["lineOne"] || "", MAX_STATUS_LINE_LENGTH)
 			var/line_two = reject_bad_text(params["lineTwo"] || "", MAX_STATUS_LINE_LENGTH)
@@ -278,7 +278,7 @@
 			last_status_display = list(line_one, line_two)
 			playsound(src, "terminal_type", 50, FALSE)
 		if ("setStatusPicture")
-			if (!authenticated(usr))
+			if (!is_authenticated(usr))
 				return
 			var/picture = params["picture"]
 			if (!(picture in approved_status_pictures))

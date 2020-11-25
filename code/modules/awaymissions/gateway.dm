@@ -93,7 +93,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centerstation
 	density = TRUE
 	icon_state = "offcenter"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 
 	//warping vars
 	var/wait = 0				//this just grabs world.time at world start
@@ -107,7 +107,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 	icon_state = "offcenter"
 
 /obj/machinery/gateway/centerstation/process()
-	if((stat & (NOPOWER)) && use_power)
+	if((stat & (NOPOWER)) && power_use)
 		if(active)
 			toggleoff()
 		return
@@ -172,7 +172,7 @@ GLOBAL_DATUM(the_gateway, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centeraway
 	density = TRUE
 	icon_state = "offcenter"
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	var/obj/machinery/gateway/centerstation/stationgate = null
 	can_link = TRUE
 

@@ -5,7 +5,7 @@
 	icon_state = "mmi_off"
 	w_class = WEIGHT_CLASS_NORMAL
 	var/braintype = "Cyborg"
-	var/obj/item/radio/radio = null //Let's give it a radio.
+	var/obj/item/radio/the_radio = null //Let's give it a radio.
 	var/mob/living/brain/brainmob = null //The current occupant.
 	var/mob/living/silicon/robot = null //Appears unused.
 	var/obj/mecha = null //This does not appear to be used outside of reference in mecha.dm.
@@ -31,8 +31,8 @@
 
 /obj/item/mmi/Initialize()
 	. = ..()
-	radio = new(src) //Spawns a radio inside the MMI.
-	radio.broadcasting = FALSE //researching radio mmis turned the robofabs into radios because this didnt start as 0.
+	the_radio = new(src) //Spawns a radio inside the MMI.
+	the_radio.broadcasting = FALSE //researching radio mmis turned the robofabs into radios because this didnt start as 0.
 	laws.set_laws_config()
 
 /obj/item/mmi/attackby(obj/item/O, mob/user, params)
@@ -85,8 +85,8 @@
 
 /obj/item/mmi/attack_self(mob/user)
 	if(!brain)
-		radio.on = !radio.on
-		to_chat(user, "<span class='notice'>You toggle [src]'s radio system [radio.on==1 ? "on" : "off"].</span>")
+		the_radio.on = !the_radio.on
+		to_chat(user, "<span class='notice'>You toggle [src]'s radio system [the_radio.on==1 ? "on" : "off"].</span>")
 	else
 		eject_brain(user)
 		update_icon()
@@ -147,12 +147,12 @@
 
 	if(brainmob.stat)
 		to_chat(brainmob, "<span class='warning'>Can't do that while incapacitated or dead!</span>")
-	if(!radio.on)
+	if(!the_radio.on)
 		to_chat(brainmob, "<span class='warning'>Your radio is disabled!</span>")
 		return
 
-	radio.listening = !radio.listening
-	to_chat(brainmob, "<span class='notice'>Radio is [radio.listening ? "now" : "no longer"] receiving broadcast.</span>")
+	the_radio.listening = !the_radio.listening
+	to_chat(brainmob, "<span class='notice'>Radio is [the_radio.listening ? "now" : "no longer"] receiving broadcast.</span>")
 
 /obj/item/mmi/emp_act(severity)
 	. = ..()
@@ -182,9 +182,9 @@
 		brain = null
 	if(mecha)
 		mecha = null
-	if(radio)
-		qdel(radio)
-		radio = null
+	if(the_radio)
+		qdel(the_radio)
+		the_radio = null
 	return ..()
 
 /obj/item/mmi/deconstruct(disassembled = TRUE)
@@ -194,7 +194,7 @@
 
 /obj/item/mmi/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>There is a switch to toggle the radio system [radio.on ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]</span>"
+	. += "<span class='notice'>There is a switch to toggle the radio system [the_radio.on ? "off" : "on"].[brain ? " It is currently being covered by [brain]." : null]</span>"
 	if(brainmob)
 		var/mob/living/brain/B = brainmob
 		if(!B.key || !B.mind || B.stat == DEAD)
@@ -217,4 +217,4 @@
 /obj/item/mmi/syndie/Initialize()
 	. = ..()
 	laws = new /datum/ai_laws/syndicate_override()
-	radio.on = FALSE
+	the_radio.on = FALSE

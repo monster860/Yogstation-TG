@@ -12,7 +12,7 @@
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT | ON_BLUEPRINTS
 	var/datum/powernet/powernet = null
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 
@@ -76,7 +76,7 @@
 /obj/machinery/proc/powered(var/chan = -1) // defaults to power_channel
 	if(!loc)
 		return FALSE
-	if(!use_power)
+	if(!power_use)
 		return TRUE
 
 	var/area/A = get_area(src)		// make sure it's in an area

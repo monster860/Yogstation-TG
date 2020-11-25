@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "scanner"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 50
 	active_power_usage = 300
 	occupant_typecache = list(/mob/living, /obj/item/bodypart/head, /obj/item/organ/brain)

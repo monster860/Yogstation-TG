@@ -86,7 +86,7 @@
 	density = TRUE
 	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	resistance_flags = INDESTRUCTIBLE
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 	armor = list("melee" = 0, "bullet" = 25, "laser" = 50, "energy" = 50, "bomb" = 25, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	var/obj/item/forcefield_projector/generator
 

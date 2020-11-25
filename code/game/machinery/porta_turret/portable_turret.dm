@@ -12,7 +12,7 @@
 	invisibility = INVISIBILITY_OBSERVER	//the turret is invisible if it's inside its cover
 	density = TRUE
 	desc = "A covered turret that shoots at its enemies."
-	use_power = IDLE_POWER_USE				//this turret uses and requires power
+	power_use = IDLE_POWER_USE				//this turret uses and requires power
 	idle_power_usage = 50		//when inactive, this turret takes up constant 50 Equipment power
 	active_power_usage = 300	//when active, this turret takes up constant 300 Equipment power
 	req_access = list(ACCESS_SEC_DOORS)
@@ -638,7 +638,7 @@
 /obj/machinery/porta_turret/syndicate
 	installation = null
 	always_up = 1
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	has_cover = 0
 	scan_range = 9
 	req_access = list(ACCESS_SYNDICATE)
@@ -748,7 +748,7 @@
 	installation = null
 	max_integrity = 260
 	always_up = 1
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	has_cover = 0
 	scan_range = 9
 	stun_projectile = /obj/item/projectile/beam/laser

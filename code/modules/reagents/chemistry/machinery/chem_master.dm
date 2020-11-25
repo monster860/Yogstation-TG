@@ -8,7 +8,7 @@
 	layer = BELOW_OBJ_LAYER
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 20
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	circuit = /obj/item/circuitboard/machine/chem_master

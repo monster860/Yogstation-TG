@@ -67,7 +67,7 @@
 	for (var/k in GLOB.radiochannels)
 		if (k == RADIO_CHANNEL_COMMON)
 			continue
-		.["channels"] += list(list("name" = k, "installed" = (k in borg.radio.channels)))
+		.["channels"] += list(list("name" = k, "installed" = (k in borg.silicon_radio.channels)))
 	.["cell"] = borg.cell ? list("missing" = FALSE, "maxcharge" = borg.cell.maxcharge, "charge" = borg.cell.charge) : list("missing" = TRUE, "maxcharge" = 1, "charge" = 0)
 	.["modules"] = list()
 	for(var/moduletype in typesof(/obj/item/robot_module))
@@ -164,32 +164,32 @@
 				log_admin("[key_name(user)] added the [upgrade] borg upgrade to [key_name(borg)].")
 		if ("toggle_radio")
 			var/channel = params["channel"]
-			if (channel in borg.radio.channels) // We're removing a channel
-				if (!borg.radio.keyslot) // There's no encryption key. This shouldn't happen but we can cope
-					borg.radio.channels -= channel
+			if (channel in borg.silicon_radio.channels) // We're removing a channel
+				if (!borg.silicon_radio.keyslot) // There's no encryption key. This shouldn't happen but we can cope
+					borg.silicon_radio.channels -= channel
 					if (channel == RADIO_CHANNEL_SYNDICATE)
-						borg.radio.syndie = FALSE
+						borg.silicon_radio.syndie = FALSE
 					else if (channel == "CentCom")
-						borg.radio.independent = FALSE
+						borg.silicon_radio.independent = FALSE
 				else
-					borg.radio.keyslot.channels -= channel
+					borg.silicon_radio.keyslot.channels -= channel
 					if (channel == RADIO_CHANNEL_SYNDICATE)
-						borg.radio.keyslot.syndie = FALSE
+						borg.silicon_radio.keyslot.syndie = FALSE
 					else if (channel == "CentCom")
-						borg.radio.keyslot.independent = FALSE
+						borg.silicon_radio.keyslot.independent = FALSE
 				message_admins("[key_name_admin(user)] removed the [channel] radio channel from [ADMIN_LOOKUPFLW(borg)].")
 				log_admin("[key_name(user)] removed the [channel] radio channel from [key_name(borg)].")
 			else	// We're adding a channel
-				if (!borg.radio.keyslot) // Assert that an encryption key exists
-					borg.radio.keyslot = new (borg.radio)
-				borg.radio.keyslot.channels[channel] = 1
+				if (!borg.silicon_radio.keyslot) // Assert that an encryption key exists
+					borg.silicon_radio.keyslot = new (borg.silicon_radio)
+				borg.silicon_radio.keyslot.channels[channel] = 1
 				if (channel == RADIO_CHANNEL_SYNDICATE)
-					borg.radio.keyslot.syndie = TRUE
+					borg.silicon_radio.keyslot.syndie = TRUE
 				else if (channel == "CentCom")
-					borg.radio.keyslot.independent = TRUE
+					borg.silicon_radio.keyslot.independent = TRUE
 				message_admins("[key_name_admin(user)] added the [channel] radio channel to [ADMIN_LOOKUPFLW(borg)].")
 				log_admin("[key_name(user)] added the [channel] radio channel to [key_name(borg)].")
-			borg.radio.recalculateChannels()
+			borg.silicon_radio.recalculateChannels()
 		if ("setmodule")
 			var/newmodulepath = text2path(params["module"])
 			if (ispath(newmodulepath))

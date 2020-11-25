@@ -110,10 +110,10 @@
 //  a var, which wouldn't need a proc, but it makes it possible
 //  for later tube types to interact in more interesting ways
 //  such as being very fast in one direction, but slow in others
-/obj/structure/transit_tube/proc/exit_delay(pod, to_dir)
+/obj/structure/transit_tube/proc/get_exit_delay(pod, to_dir)
 	return exit_delay
 
-/obj/structure/transit_tube/proc/enter_delay(pod, to_dir)
+/obj/structure/transit_tube/proc/get_enter_delay(pod, to_dir)
 	return enter_delay
 
 

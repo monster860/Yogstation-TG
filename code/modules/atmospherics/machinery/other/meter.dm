@@ -5,7 +5,7 @@
 	icon_state = "meterX"
 	layer = GAS_METER_LAYER
 	power_channel = ENVIRON
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	max_integrity = 150

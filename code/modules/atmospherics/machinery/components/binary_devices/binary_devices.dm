@@ -2,7 +2,7 @@
 	icon = 'icons/obj/atmospherics/components/binary_devices.dmi'
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	device_type = BINARY
 	layer = GAS_PUMP_LAYER
 

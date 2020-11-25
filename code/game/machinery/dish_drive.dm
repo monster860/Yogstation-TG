@@ -65,13 +65,13 @@
 /obj/machinery/dish_drive/RefreshParts()
 	idle_power_usage = initial(idle_power_usage)
 	active_power_usage = initial(active_power_usage)
-	use_power = initial(use_power)
+	power_use = initial(power_use)
 	var/total_rating = 0
 	for(var/obj/item/stock_parts/S in component_parts)
 		total_rating += S.rating
 	if(total_rating >= 9)
 		active_power_usage = 0
-		use_power = NO_POWER_USE
+		power_use = NO_POWER_USE
 	else
 		idle_power_usage = max(0, idle_power_usage - total_rating)
 		active_power_usage = max(0, active_power_usage - total_rating)

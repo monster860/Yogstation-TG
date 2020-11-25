@@ -76,7 +76,7 @@
 			if(!check_positioning())
 				back_to_prep()
 			else
-				countdown_step()
+				do_countdown_step()
 		if(DUEL_FIRING)
 			if(check_fired())
 				end()
@@ -96,7 +96,7 @@
 	message_duelists("<span class='notice'>Readiness confirmed. Starting countdown. Commence firing at zero mark.</span>")
 	state = DUEL_COUNTDOWN
 
-/datum/duel/proc/countdown_step()
+/datum/duel/proc/do_countdown_step()
 	countdown_step--
 	if(countdown_step == 0)
 		state = DUEL_FIRING

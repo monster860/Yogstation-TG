@@ -166,7 +166,7 @@
 	if(!..())
 		return
 	var/mob/living/silicon/pai/pAI = usr
-	pAI.radio.interact(usr)
+	pAI.silicon_radio.interact(usr)
 
 /datum/hud/pai/New(mob/living/silicon/pai/owner)
 	..()

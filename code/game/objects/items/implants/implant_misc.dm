@@ -93,7 +93,7 @@
 /obj/item/implant/radio
 	name = "internal radio implant"
 	activated = TRUE
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_key
 	var/subspace_transmission = FALSE
 	icon = 'icons/obj/radio.dmi'
@@ -102,20 +102,20 @@
 /obj/item/implant/radio/activate()
 	. = ..()
 	// needs to be GLOB.deep_inventory_state otherwise it won't open
-	radio.ui_interact(usr, state = GLOB.deep_inventory_state)
+	the_radio.ui_interact(usr, state = GLOB.deep_inventory_state)
 
 /obj/item/implant/radio/Initialize(mapload)
 	. = ..()
 
-	radio = new(src)
+	the_radio = new(src)
 	// almost like an internal headset, but without the
 	// "must be in ears to hear" restriction.
-	radio.name = "internal radio"
-	radio.subspace_transmission = subspace_transmission
-	radio.canhear_range = 0
+	the_radio.name = "internal radio"
+	the_radio.subspace_transmission = subspace_transmission
+	the_radio.canhear_range = 0
 	if(radio_key)
-		radio.keyslot = new radio_key
-	radio.recalculateChannels()
+		the_radio.keyslot = new radio_key
+	the_radio.recalculateChannels()
 
 /obj/item/implant/radio/mining
 	radio_key = /obj/item/encryptionkey/headset_cargo

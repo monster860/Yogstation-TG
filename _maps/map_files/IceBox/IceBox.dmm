@@ -13379,7 +13379,7 @@
 	invuln = 1;
 	name = "Hardened Bomb-Test Camera";
 	network = list("toxins");
-	use_power = 0
+	power_use = 0
 	},
 /obj/item/target/alien/anchored,
 /obj/effect/turf_decal/stripes/line{

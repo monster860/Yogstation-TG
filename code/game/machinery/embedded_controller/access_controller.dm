@@ -6,7 +6,7 @@
 
 /obj/machinery/doorButtons
 	power_channel = ENVIRON
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF

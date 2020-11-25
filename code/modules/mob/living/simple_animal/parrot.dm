@@ -202,7 +202,7 @@
 					say("[available_channels.len ? "[pick(available_channels)] " : null]BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
 				ears.forceMove(drop_location())
 				ears = null
-				for(var/possible_phrase in speak)
+				for(var/possible_phrase in speak_list)
 					if(copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys)
 						possible_phrase = copytext_char(possible_phrase, 3)
 
@@ -368,10 +368,10 @@
 /mob/living/simple_animal/parrot/handle_automated_speech()
 	..()
 	if(speech_buffer.len && prob(speech_shuffle_rate)) //shuffle out a phrase and add in a new one
-		if(speak.len)
-			speak.Remove(pick(speak))
+		if(speak_list.len)
+			speak.Remove(pick(speak_list))
 
-		speak.Add(pick(speech_buffer))
+		speak_list.Add(pick(speech_buffer))
 
 
 /mob/living/simple_animal/parrot/handle_automated_movement()
@@ -402,11 +402,11 @@
 			parrot_sleep_dur = parrot_sleep_max
 
 			//Cycle through message modes for the headset
-			if(speak.len)
+			if(speak_list.len)
 				var/list/newspeak = list()
 
 				if(available_channels.len && src.ears)
-					for(var/possible_phrase in speak)
+					for(var/possible_phrase in speak_list)
 
 						//50/50 chance to not use the radio at all
 						var/useradio = 0
@@ -421,11 +421,11 @@
 						newspeak.Add(possible_phrase)
 
 				else //If we have no headset or channels to use, dont try to use any!
-					for(var/possible_phrase in speak)
+					for(var/possible_phrase in speak_list)
 						if((possible_phrase[1] in GLOB.department_radio_prefixes) && (copytext_char(possible_phrase, 2, 3) in GLOB.department_radio_keys))
 							possible_phrase = copytext_char(possible_phrase, 3) //crop out the channel prefix
 						newspeak.Add(possible_phrase)
-				speak = newspeak
+				speak_list = newspeak
 
 			//Search for item to steal
 			parrot_interest = search_for_item()
@@ -875,19 +875,19 @@
 	available_channels = list(":e")
 	Read_Memory()
 	if(rounds_survived == longest_survival)
-		speak += pick("...[longest_survival].", "The things I've seen!", "I have lived many lives!", "What are you before me?")
+		speak_list += pick("...[longest_survival].", "The things I've seen!", "I have lived many lives!", "What are you before me?")
 		desc += " Old as sin, and just as loud. Claimed to be [rounds_survived]."
 		speak_chance = 20 //His hubris has made him more annoying/easier to justify killing
 		add_atom_colour("#EEEE22", FIXED_COLOUR_PRIORITY)
 	else if(rounds_survived == longest_deathstreak)
-		speak += pick("What are you waiting for!", "Violence breeds violence!", "Blood! Blood!", "Strike me down if you dare!")
+		speak_list += pick("What are you waiting for!", "Violence breeds violence!", "Blood! Blood!", "Strike me down if you dare!")
 		desc += " The squawks of [-rounds_survived] dead parrots ring out in your ears..."
 		add_atom_colour("#BB7777", FIXED_COLOUR_PRIORITY)
 	else if(rounds_survived > 0)
-		speak += pick("...again?", "No, It was over!", "Let me out!", "It never ends!")
+		speak_list += pick("...again?", "No, It was over!", "Let me out!", "It never ends!")
 		desc += " Over [rounds_survived] shifts without a \"terrible\" \"accident\"!"
 	else
-		speak += pick("...alive?", "This isn't parrot heaven!", "I live, I die, I live again!", "The void fades!")
+		speak_list += pick("...alive?", "This isn't parrot heaven!", "I live, I die, I live again!", "The void fades!")
 
 	. = ..()
 

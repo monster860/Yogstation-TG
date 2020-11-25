@@ -73,7 +73,7 @@
 	invuln = 1;
 	name = "Hardened Bomb-Test Camera";
 	network = list("toxins");
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/floor/plating/airless,
 /area/science/test_area)

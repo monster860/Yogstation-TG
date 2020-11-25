@@ -15,7 +15,7 @@
 	if(!thearea || !cast_check(1))
 		revert_cast()
 		return
-	invocation(thearea,user)
+	do_invocation(thearea,user)
 	if(charge_type == "recharge" && recharge)
 		INVOKE_ASYNC(src, .proc/start_recharge)
 	cast(targets,thearea,user)
@@ -71,7 +71,7 @@
 			do_teleport(target, L, forceMove = TRUE, channel = TELEPORT_CHANNEL_MAGIC)
 			playsound(get_turf(user), sound2, 50,1)
 
-/obj/effect/proc_holder/spell/targeted/area_teleport/invocation(area/chosenarea = null,mob/living/user = usr)
+/obj/effect/proc_holder/spell/targeted/area_teleport/do_invocation(area/chosenarea = null,mob/living/user = usr)
 	if(!invocation_area || !chosenarea)
 		..()
 	else

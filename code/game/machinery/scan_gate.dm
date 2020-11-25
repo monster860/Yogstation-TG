@@ -24,7 +24,7 @@
 	desc = "A gate able to perform mid-depth scans on any organisms who pass under it."
 	icon = 'icons/obj/machines/scangate.dmi'
 	icon_state = "scangate"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/scanner_gate
 	var/scanline_timer

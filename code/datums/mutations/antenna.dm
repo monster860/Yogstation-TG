@@ -6,19 +6,19 @@
 	text_lose_indication = "<span class='notice'>Your antenna shrinks back down.</span>"
 	instability = 15
 	difficulty = 8
-	var/obj/item/implant/radio/antenna/radio
+	var/obj/item/implant/radio/antenna/radio_implant
 
 /datum/mutation/human/antenna/on_acquiring(mob/living/carbon/human/owner)
 	if(..())
 		return
-	radio = new(owner)
-	radio.implant(owner, null, TRUE, TRUE)
+	radio_implant = new(owner)
+	radio_implant.implant(owner, null, TRUE, TRUE)
 
 /datum/mutation/human/antenna/on_losing(mob/living/carbon/human/owner)
 	if(..())
 		return
-	if(radio)
-		radio.Destroy()
+	if(radio_implant)
+		radio_implant.Destroy()
 
 /datum/mutation/human/antenna/New(class_ = MUT_OTHER, timer, datum/mutation/human/copymut)
 	..()

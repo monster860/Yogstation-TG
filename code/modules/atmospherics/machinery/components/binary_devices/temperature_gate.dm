@@ -110,7 +110,7 @@
 				investigate_log("was set to [target_temperature] K by [key_name(usr)]", INVESTIGATE_ATMOS)
 	update_icon()
 
-/obj/machinery/atmospherics/components/binary/temperature_gate/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/binary/temperature_gate/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

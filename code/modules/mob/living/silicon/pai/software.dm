@@ -154,7 +154,7 @@
 
 
 			if("radio") // Configuring onboard radio
-				radio.attack_self(src)
+				silicon_radio.attack_self(src)
 
 			if("image") // Set pAI card display face
 				var/newImage = input("Select your new display image.", "Display Image", "Happy") in list("Happy", "Cat", "Extremely Happy", "Face", "Laugh", "Off", "Sad", "Angry", "What")

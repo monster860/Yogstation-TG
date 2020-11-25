@@ -11,7 +11,7 @@
 	can_be_unanchored = TRUE
 	resistance_flags = ACID_PROOF
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 100)
-	CanAtmosPass = ATMOS_PASS_PROC
+	atmos_pass_mode = ATMOS_PASS_PROC
 	rad_insulation = RAD_VERY_LIGHT_INSULATION
 	var/ini_dir = null
 	var/state = WINDOW_SCREWED_TO_FRAME
@@ -856,7 +856,7 @@
 	glass_type = /obj/item/stack/sheet/paperframes
 	heat_resistance = 233
 	decon_speed = 10
-	CanAtmosPass = ATMOS_PASS_YES
+	atmos_pass_mode = ATMOS_PASS_YES
 	resistance_flags = FLAMMABLE
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	breaksound = 'sound/items/poster_ripped.ogg'

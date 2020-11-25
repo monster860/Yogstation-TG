@@ -36,7 +36,7 @@ Contents:
 	return 0
 
 
-/obj/item/clothing/suit/space/space_ninja/proc/stealth()
+/obj/item/clothing/suit/space/space_ninja/proc/stealth_action()
 	if(!s_busy)
 		toggle_stealth()
 	else

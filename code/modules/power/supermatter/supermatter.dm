@@ -146,7 +146,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/corruptor_attached = FALSE		// The thing that reduces support integrity
 
 	// Radio related variables
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_key = /obj/item/encryptionkey/headset_eng
 	var/engineering_channel = RADIO_CHANNEL_ENGINEERING
 	var/common_channel = null
@@ -160,7 +160,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	var/produces_gas = TRUE		// Does it make gas
 
 	// Holder variables
-	var/obj/effect/countdown/supermatter/countdown
+	var/obj/effect/countdown/supermatter/countdown_obj
 	var/datum/looping_sound/supermatter/soundloop
 
 	/// For antag sliver objective or for engineering goal
@@ -201,12 +201,12 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 	. = ..()
 	uid = gl_uid++
 	SSair.atmos_machinery += src
-	countdown = new(src)
-	countdown.start()
+	countdown_obj = new(src)
+	countdown_obj.start()
 	GLOB.poi_list |= src
-	radio = new(src)
-	radio.keyslot = new radio_key
-	radio.listening = 0
+	the_radio = new(src)
+	the_radio.keyslot = new radio_key
+	the_radio.listening = 0
 	radio.recalculateChannels()
 	investigate_log("has been created.", INVESTIGATE_SUPERMATTER)
 	if(is_main_engine)
@@ -217,9 +217,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 /obj/machinery/power/supermatter_crystal/Destroy()
 	investigate_log("has been destroyed.", INVESTIGATE_SUPERMATTER)
 	SSair.atmos_machinery -= src
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	GLOB.poi_list -= src
-	QDEL_NULL(countdown)
+	QDEL_NULL(countdown_obj)
 	if(is_main_engine && GLOB.main_supermatter_engine == src)
 		GLOB.main_supermatter_engine = null
 	QDEL_NULL(soundloop)
@@ -296,10 +296,10 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		speaking = "SUPERMATTER CRITICAL FAILURE ENGAGING FAILSAFE" //technically the failsafe is fail-danger, but whatever.
 	else
 		speaking = "[emergency_alert] The supermatter has reached critical integrity failure. Emergency causality destabilization field has been activated."
-	radio.talk_into(src, speaking, common_channel, language = get_selected_language())
+	the_radio.talk_into(src, speaking, common_channel, language = get_selected_language())
 	for(var/i in SUPERMATTER_COUNTDOWN_TIME to 0 step -10)
 		if(damage < explosion_point) // Cutting it a bit close there engineers
-			radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
+			the_radio.talk_into(src, "[safe_alert] Failsafe has been disengaged.", common_channel)
 			log_game("The supermatter crystal:[safe_alert] Failsafe has been disengaged.") // yogs start - Logs SM chatter
 			investigate_log("The supermatter crystal:[safe_alert] Failsafe has been disengaged.", INVESTIGATE_SUPERMATTER) // yogs end
 			cut_overlay(causality_field, TRUE)
@@ -329,7 +329,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			log_game("The supermatter crystal: [i*0.1]...") // yogs start - Logs SM chatter
 			investigate_log("The supermatter crystal: [i*0.1]...", INVESTIGATE_SUPERMATTER) // yogs end
-		radio.talk_into(src, speaking, common_channel)
+		the_radio.talk_into(src, speaking, common_channel)
 		sleep(10)
 
 	explode()
@@ -572,9 +572,9 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			if(damage > emergency_point)
 				if(corruptor_attached)
-					radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", common_channel)
+					the_radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", common_channel)
 				else
-					radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel)
+					the_radio.talk_into(src, "[emergency_alert] Integrity: [get_integrity()]%", common_channel)
 				log_game("The supermatter crystal: [emergency_alert] Integrity: [get_integrity()]%") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: [emergency_alert] Integrity: [get_integrity()]%", INVESTIGATE_SUPERMATTER) // yogs end
 				lastwarning = REALTIMEOFDAY
@@ -584,32 +584,32 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 					has_reached_emergency = TRUE
 			else if(damage >= damage_archived) // The damage is still going up
 				if(corruptor_attached)
-					radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", engineering_channel)
+					the_radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", engineering_channel)
 				else
-					radio.talk_into(src, "[warning_alert] Integrity: [get_integrity()]%", engineering_channel)
+					the_radio.talk_into(src, "[warning_alert] Integrity: [get_integrity()]%", engineering_channel)
 				log_game("The supermatter crystal: [warning_alert] Integrity: [get_integrity()]%") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: [warning_alert] Integrity: [get_integrity()]%", INVESTIGATE_SUPERMATTER) // yogs end
 				lastwarning = REALTIMEOFDAY - (WARNING_DELAY * 5)
 			else	// Phew, we're safe
 				if(corruptor_attached)
-					radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", engineering_channel)
+					the_radio.talk_into(src, "[warning_alert] Integrity: [get_fake_integrity()]%!", engineering_channel)
 				else
-					radio.talk_into(src, "[safe_alert] Integrity: [get_integrity()]%", engineering_channel)
+					the_radio.talk_into(src, "[safe_alert] Integrity: [get_integrity()]%", engineering_channel)
 				log_game("The supermatter crystal: [safe_alert] Integrity: [get_integrity()]%") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: [safe_alert] Integrity: [get_integrity()]%", INVESTIGATE_SUPERMATTER) // yogs end
 				lastwarning = REALTIMEOFDAY
 
 			if(power > POWER_PENALTY_THRESHOLD)
-				radio.talk_into(src, "Warning: Hyperstructure has reached dangerous power level.", engineering_channel)
+				the_radio.talk_into(src, "Warning: Hyperstructure has reached dangerous power level.", engineering_channel)
 				log_game("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: Warning: Hyperstructure has reached dangerous power level.", INVESTIGATE_SUPERMATTER) // yogs end
 				if(powerloss_inhibitor < 0.5)
-					radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel)
+					the_radio.talk_into(src, "DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", engineering_channel)
 					log_game("The supermatter crystal: DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.") // yogs start - Logs SM chatter
 					investigate_log("The supermatter crystal: DANGER: CHARGE INERTIA CHAIN REACTION IN PROGRESS.", INVESTIGATE_SUPERMATTER) // yogs end
 
 			if(combined_gas > MOLE_PENALTY_THRESHOLD)
-				radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel)
+				the_radio.talk_into(src, "Warning: Critical coolant mass reached.", engineering_channel)
 				log_game("The supermatter crystal: Warning: Critical coolant mass reached.") // yogs start - Logs SM chatter
 				investigate_log("The supermatter crystal: Warning: Critical coolant mass reached.", INVESTIGATE_SUPERMATTER) // yogs end
 
@@ -621,29 +621,29 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		if(prob(10+round(damage/(explosion_point/20),1)*3) & support_integrity>0)//radio chatter to make people panic
 			switch(support_integrity)
 				if(100)
-					radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
+					the_radio.talk_into(src, "CORRUPTION OF PRIMARY SUPERMATTER SUPPORT INFRASTRUCTURE DETECTED!", engineering_channel)
 				if(90)
-					radio.talk_into(src, "CHARGE SEQUESTRATION SYSTEM FAILING, ENERGY LEVELS INCREASING!", engineering_channel)
+					the_radio.talk_into(src, "CHARGE SEQUESTRATION SYSTEM FAILING, ENERGY LEVELS INCREASING!", engineering_channel)
 				if(80)
-					radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SQEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
+					the_radio.talk_into(src, "COMPLETE FAILURE OF CHARGE SQEQUESTRATION IMMINENT, ACTIVATING EMERGENCY CHARGE DISPERSION SYSTEM!", engineering_channel)
 				if(70)
-					radio.talk_into(src, "CHARGE DISPERSION SYSTEM ACTIVE. CORRUPTION OF PARANOBLIUM INTERFACE SYSTEM DETECTED, MATTER EMISSION LEVELS RISING", engineering_channel)
+					the_radio.talk_into(src, "CHARGE DISPERSION SYSTEM ACTIVE. CORRUPTION OF PARANOBLIUM INTERFACE SYSTEM DETECTED, MATTER EMISSION LEVELS RISING", engineering_channel)
 				if(60)
-					radio.talk_into(src, "PARANOBLIUM INTERFACE OPERATING AT [round(75+ rand()*10,0.01)]% CAPACITY, MATTER EMISSION FACTOR RISING", engineering_channel)
+					the_radio.talk_into(src, "PARANOBLIUM INTERFACE OPERATING AT [round(75+ rand()*10,0.01)]% CAPACITY, MATTER EMISSION FACTOR RISING", engineering_channel)
 				if(50)
-					radio.talk_into(src, "COMPLETE FAILURE OF GAMMA RADIATION SUPPRESSION SYSTEM DETECTED, ACTIVATING GAMMA EMISSION BUNDLING AND DISPERSION SYSTEM", engineering_channel)
+					the_radio.talk_into(src, "COMPLETE FAILURE OF GAMMA RADIATION SUPPRESSION SYSTEM DETECTED, ACTIVATING GAMMA EMISSION BUNDLING AND DISPERSION SYSTEM", engineering_channel)
 				if(40)
-					radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE", engineering_channel)
+					the_radio.talk_into(src, "DISPERSION SYSTEM ACTIVATION FAILED, BUNDLER NOW FIRING WITHOUT GUIDANCE", engineering_channel)
 				if(30)
-					radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY", engineering_channel)
+					the_radio.talk_into(src, "WARNING ENERGY SPIKE IN CRYSTAL WELL DETECTED, ESTIMATED ENERGY OUTPUT EXCEEDS PEAK CHARGE DISPERSION CAPACITY", engineering_channel)
 				if(20)
-					radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", common_channel)
+					the_radio.talk_into(src, "CRYSTAL WELL DESTABILIZED, ELECTROMAGNETIC PULSES INBOUND, PARANOBLIUM INTERFACE OPERATING AT [round(15+ rand()*10,0.01)]% CAPACITY", common_channel)
 				if(10)
-					radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", common_channel)
+					the_radio.talk_into(src, "ELECTROMAGNETIC PULSE CONTAINMENT FAILED, PARANOBLIUM INTERFACE NONFUNCTIONAL, DELAMINATION IMMINENT", common_channel)
 				if(6)
-					radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT", common_channel)
+					the_radio.talk_into(src, "ELECTROMAGNETIC PULSES IMMINENT, CONTAINMENT AND COOLING FAILURE IMMINENT", common_channel)
 				if(1) //after those emps, anyone who can hear this must be lucky.
-					radio.talk_into(src, "COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, ADVICE COMPLETE EVACUATION", common_channel)
+					the_radio.talk_into(src, "COMPLETE DESTABILIZATION OF ALL MAJOR SUPPORT SYSTEMS, MATTER EMISSION FACTOR AT 600%, ADVICE COMPLETE EVACUATION", common_channel)
 			support_integrity -= 1
 			radiation_pulse(src, (100-support_integrity)*2, 4)
 			if(support_integrity<3)
@@ -839,7 +839,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		message_admins("Antinoblium shard has been attached to the SM and is now going BRRRRRR.")
 		to_chat(user, "<span class='danger'>You attach the antinoblium shard to the [src], moving your hand away before a sudden gravitational wave pulls the [W] into the crystal as it flashes to ash!")
 		playsound(get_turf(src), 'sound/effects/supermatter.ogg', 50, 1)
-		radio.use_command = TRUE
+		the_radio.use_command = TRUE
 		radiation_pulse(src, 150, 4)
 		empulse(src, 3,6)
 		qdel(W)

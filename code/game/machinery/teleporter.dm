@@ -7,7 +7,7 @@
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/circuitboard/machine/teleporter_hub
@@ -108,7 +108,7 @@
 	name = "teleporter station"
 	desc = "The power control station for a bluespace teleporter. Used for toggling power, and can activate a test-fire to prevent malfunctions."
 	icon_state = "controller"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000
 	circuit = /obj/item/circuitboard/machine/teleporter_station

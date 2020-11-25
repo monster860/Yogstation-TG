@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(clones, 0)
 #define CLONE_INITIAL_DAMAGE     150    //Clones in clonepods start with 150 cloneloss damage and 150 brainloss damage, thats just logical
 #define MINIMUM_HEAL_LEVEL 40
 
-#define SPEAK(message) radio.talk_into(src, message, radio_channel)
+#define SPEAK(message) the_radio.talk_into(src, message, radio_channel)
 
 /obj/machinery/clonepod
 	name = "cloning pod"
@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(clones, 0)
 	var/grab_ghost_when = CLONER_MATURE_CLONE
 
 	var/internal_radio = TRUE
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 	var/radio_key = /obj/item/encryptionkey/headset_med
 	var/radio_channel = RADIO_CHANNEL_MEDICAL
 
@@ -48,15 +48,15 @@ GLOBAL_VAR_INIT(clones, 0)
 	countdown = new(src)
 
 	if(internal_radio)
-		radio = new(src)
-		radio.keyslot = new radio_key
-		radio.subspace_transmission = TRUE
-		radio.canhear_range = 0
-		radio.recalculateChannels()
+		the_radio = new(src)
+		the_radio.keyslot = new radio_key
+		the_radio.subspace_transmission = TRUE
+		the_radio.canhear_range = 0
+		the_radio.recalculateChannels()
 
 /obj/machinery/clonepod/Destroy()
 	go_out()
-	QDEL_NULL(radio)
+	QDEL_NULL(the_radio)
 	QDEL_NULL(countdown)
 	if(connected)
 		connected.DetachCloner(src)

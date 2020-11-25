@@ -6,7 +6,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer"
 	layer = BELOW_OBJ_LAYER
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/reagentgrinder

@@ -152,7 +152,7 @@
 	if((!anchored && !movable) || !is_operational())
 		on = FALSE
 		update_icon()
-	use_power = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	power_use = on ? ACTIVE_POWER_USE : IDLE_POWER_USE
 	if(!on)
 		return
 

@@ -12,7 +12,7 @@
 	var/icon_gib = null	//We only try to show a gibbing animation if this exists.
 	var/flip_on_death = FALSE //Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 
-	var/list/speak = list()
+	var/list/speak_list = list()
 	var/list/speak_emote = list()//	Emotes while speaking IE: Ian [emote], [text] -- Ian barks, "WOOF!". Spoken text is generated from the speak variable.
 	var/speak_chance = 0
 	var/list/emote_hear = list()	//Hearable emotes
@@ -177,24 +177,24 @@
 	set waitfor = FALSE
 	if(speak_chance)
 		if(prob(speak_chance) || override)
-			if(speak && speak.len)
+			if(speak_list && speak_list.len)
 				if((emote_hear && emote_hear.len) || (emote_see && emote_see.len))
-					var/length = speak.len
+					var/length = speak_list.len
 					if(emote_hear && emote_hear.len)
 						length += emote_hear.len
 					if(emote_see && emote_see.len)
 						length += emote_see.len
 					var/randomValue = rand(1,length)
-					if(randomValue <= speak.len)
-						say(pick(speak), forced = "poly")
+					if(randomValue <= speak_list.len)
+						say(pick(speak_list), forced = "poly")
 					else
-						randomValue -= speak.len
+						randomValue -= speak_list.len
 						if(emote_see && randomValue <= emote_see.len)
 							emote("me [pick(emote_see)]", 1, TRUE)
 						else
 							emote("me [pick(emote_hear)]", 2, TRUE)
 				else
-					say(pick(speak), forced = "poly")
+					say(pick(speak_list), forced = "poly")
 			else
 				if(!(emote_hear && emote_hear.len) && (emote_see && emote_see.len))
 					emote("me", 1, pick(emote_see))

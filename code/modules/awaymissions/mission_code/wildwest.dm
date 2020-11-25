@@ -64,7 +64,7 @@
 	icon_state = "syndbeacon"
 
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 
 	var/chargesa = 1
 	var/insistinga = 0

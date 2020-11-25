@@ -46,7 +46,6 @@
 							 "<span class='notice'>You shaped [src] into metal with the welding tool.</span>", \
 							 "<span class='hear'>You hear welding.</span>")
 				var/obj/item/stack/rods/R = src
-				src = null
 				var/replace = (user.get_inactive_held_item()==R)
 				R.use(4)
 				if (!R && replace)
@@ -59,7 +58,6 @@
 							 "<span class='notice'>You shaped [src] into a sheet with the welding tool.</span>", \
 							 "<span class='hear'>You hear welding.</span>")
 				var/obj/item/stack/rods/R = src
-				src = null
 				var/replace = (user.get_inactive_held_item()==R)
 				R.use(4)
 				if (!R && replace)

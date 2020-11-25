@@ -25,7 +25,7 @@
 	righthand_file = 'icons/mob/inhands/misc/devices_righthand.dmi'
 	w_class = WEIGHT_CLASS_TINY
 
-	var/obj/item/integrated_signaler/radio = null
+	var/obj/item/integrated_signaler/radio_item = null
 
 	var/access = 0 //Bit flags for cartridge access
 
@@ -127,7 +127,7 @@
 
 /obj/item/cartridge/signal/Initialize()
 	. = ..()
-	radio = new(src)
+	radio_item = new(src)
 
 
 
@@ -176,7 +176,7 @@
 
 /obj/item/cartridge/rd/Initialize()
 	. = ..()
-	radio = new(src)
+	radio_item = new(src)
 
 /obj/item/cartridge/captain
 	name = "\improper Value-PAK cartridge"
@@ -188,7 +188,7 @@
 
 /obj/item/cartridge/captain/Initialize()
 	. = ..()
-	radio = new(src)
+	radio_item = new(src)
 
 /obj/item/cartridge/proc/post_status(command, data1, data2)
 
@@ -219,14 +219,14 @@
 Frequency:
 <a href='byond://?src=[REF(src)];choice=Signal Frequency;sfreq=-10'>-</a>
 <a href='byond://?src=[REF(src)];choice=Signal Frequency;sfreq=-2'>-</a>
-[format_frequency(radio.frequency)]
+[format_frequency(radio_item.frequency)]
 <a href='byond://?src=[REF(src)];choice=Signal Frequency;sfreq=2'>+</a>
 <a href='byond://?src=[REF(src)];choice=Signal Frequency;sfreq=10'>+</a><br>
 <br>
 Code:
 <a href='byond://?src=[REF(src)];choice=Signal Code;scode=-5'>-</a>
 <a href='byond://?src=[REF(src)];choice=Signal Code;scode=-1'>-</a>
-[radio.code]
+[radio_item.code]
 <a href='byond://?src=[REF(src)];choice=Signal Code;scode=1'>+</a>
 <a href='byond://?src=[REF(src)];choice=Signal Code;scode=5'>+</a><br>"}
 		if (41) //crew manifest
@@ -590,17 +590,17 @@ Code:
 				active1 = null
 
 		if("Send Signal")
-			INVOKE_ASYNC(radio, /obj/item/integrated_signaler.proc/send_activation)
+			INVOKE_ASYNC(radio_item, /obj/item/integrated_signaler.proc/send_activation)
 
 		if("Signal Frequency")
-			var/new_frequency = sanitize_frequency(radio.frequency + text2num(href_list["sfreq"]))
-			radio.set_frequency(new_frequency)
+			var/new_frequency = sanitize_frequency(radio_item.frequency + text2num(href_list["sfreq"]))
+			radio_item.set_frequency(new_frequency)
 
 		if("Signal Code")
-			radio.code += text2num(href_list["scode"])
-			radio.code = round(radio.code)
-			radio.code = min(100, radio.code)
-			radio.code = max(1, radio.code)
+			radio_item.code += text2num(href_list["scode"])
+			radio_item.code = round(radio_item.code)
+			radio_item.code = min(100, radio_item.code)
+			radio_item.code = max(1, radio_item.code)
 
 		if("Status")
 			switch(href_list["statdisp"])

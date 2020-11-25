@@ -6,7 +6,7 @@
 	icon_screen = "power"
 	icon_keyboard = "power_key"
 	light_color = LIGHT_COLOR_YELLOW
-	use_power = ACTIVE_POWER_USE
+	power_use = ACTIVE_POWER_USE
 	idle_power_usage = 20
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/computer/powermonitor
@@ -38,10 +38,10 @@
 
 /obj/machinery/computer/monitor/process()
 	if(!get_powernet())
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 		search()
 	else
-		use_power = ACTIVE_POWER_USE
+		power_use = ACTIVE_POWER_USE
 		record()
 
 /obj/machinery/computer/monitor/proc/search() //keep in sync with /datum/computer_file/program/power_monitor's version

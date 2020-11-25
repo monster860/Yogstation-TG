@@ -6,7 +6,7 @@
 	icon_state = "portgen0_0"
 	density = TRUE
 	anchored = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 
 	var/active = FALSE
 	var/power_gen = 5000

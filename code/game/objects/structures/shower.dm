@@ -8,7 +8,7 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	var/on = FALSE
 	var/current_temperature = SHOWER_NORMAL
 	var/datum/looping_sound/showering/soundloop

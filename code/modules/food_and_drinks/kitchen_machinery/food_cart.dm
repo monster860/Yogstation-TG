@@ -9,7 +9,7 @@
 	icon_state = "foodcart"
 	density = TRUE
 	anchored = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	var/food_stored = 0
 	var/glasses = 0
 	var/portion = 10

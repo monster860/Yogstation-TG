@@ -5,7 +5,7 @@
 	icon_state = "hug_me"
 	density = TRUE
 	anchored = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	can_buckle = TRUE
 	buckle_lying = FALSE
 

@@ -77,7 +77,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 	var/notescanned = FALSE // True if what is in the notekeeper was from a paper.
 	var/hidden = FALSE // Is the PDA hidden from the PDA list?
 	var/emped = FALSE
-	var/equipped = FALSE  //used here to determine if this is the first time its been picked up
+	var/has_been_equipped = FALSE  //used here to determine if this is the first time its been picked up
 
 	var/obj/item/card/id/id = null //Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null //related to above
@@ -127,7 +127,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 
 /obj/item/pda/equipped(mob/user, slot)
 	. = ..()
-	if(!equipped)
+	if(!has_been_equipped)
 		if(user.client)
 			background_color = user.client.prefs.pda_color
 			switch(user.client.prefs.pda_style)
@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 				else
 					font_index = MODE_MONO
 					font_mode = FONT_MONO
-			equipped = TRUE
+			has_been_equipped = TRUE
 
 /obj/item/pda/proc/update_label()
 	name = "PDA-[owner] ([ownjob])" //Name generalisation
@@ -284,7 +284,7 @@ GLOBAL_LIST_EMPTY(PDAs)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=54'>[PDAIMG(medbot)]Bots Access</a></li>"
 					if (cartridge.access & CART_JANITOR)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=49'>[PDAIMG(bucket)]Custodial Locator</a></li>"
-					if (istype(cartridge.radio))
+					if (istype(cartridge.radio_item))
 						dat += "<li><a href='byond://?src=[REF(src)];choice=40'>[PDAIMG(signaler)]Signaler System</a></li>"
 					if (cartridge.access & CART_NEWSCASTER)
 						dat += "<li><a href='byond://?src=[REF(src)];choice=53'>[PDAIMG(notes)]Newscaster Access </a></li>"

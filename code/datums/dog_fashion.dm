@@ -3,7 +3,7 @@
 	var/desc
 	var/emote_see
 	var/emote_hear
-	var/speak
+	var/speak_list
 	var/speak_emote
 
 	// This isn't applied to the dog, but stores the icon_state of the
@@ -27,7 +27,7 @@
 	if(emote_hear)
 		D.emote_hear = emote_hear
 	if(speak)
-		D.speak = speak
+		D.speak_list = speak_list
 	if(speak_emote)
 		D.speak_emote = speak_emote
 
@@ -62,7 +62,7 @@
 	name = "Runtime"
 	emote_see = list("coughs up a furball", "stretches")
 	emote_hear = list("purrs")
-	speak = list("Purrr", "Meow!", "MAOOOOOW!", "HISSSSS", "MEEEEEEW")
+	speak_list = list("Purrr", "Meow!", "MAOOOOOW!", "HISSSSS", "MEEEEEEW")
 	desc = "It's a cute little kitty-cat! ... wait ... what the hell?"
 
 /datum/dog_fashion/head/rabbit
@@ -73,7 +73,7 @@
 /datum/dog_fashion/head/beret
 	name = "Yann"
 	desc = "Mon dieu! C'est un chien!"
-	speak = list("le woof!", "le bark!", "JAPPE!!")
+	speak_list = list("le woof!", "le bark!", "JAPPE!!")
 	emote_see = list("cowers in fear.", "surrenders.", "plays dead.","looks as though there is a wall in front of him.")
 
 
@@ -92,7 +92,7 @@
 	desc = "Yaarghh!! Thar' be a scurvy dog!"
 	emote_see = list("hunts for treasure.","stares coldly...","gnashes his tiny corgi teeth!")
 	emote_hear = list("growls ferociously!", "snarls.")
-	speak = list("Arrrrgh!!","Grrrrrr!")
+	speak_list = list("Arrrrgh!!","Grrrrrr!")
 
 /datum/dog_fashion/head/pirate/New(mob/M)
 	..()
@@ -114,21 +114,21 @@
 
 /datum/dog_fashion/head/blue_wizard
 	name = "Grandwizard REAL_NAME"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "EI  NATH!")
+	speak_list = list("YAP", "Woof!", "Bark!", "AUUUUUU", "EI  NATH!")
 
 /datum/dog_fashion/head/red_wizard
 	name = "Pyromancer REAL_NAME"
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "ONI SOMA!")
+	speak_list = list("YAP", "Woof!", "Bark!", "AUUUUUU", "ONI SOMA!")
 
 /datum/dog_fashion/head/cardborg
 	name = "Borgi"
-	speak = list("Ping!","Beep!","Woof!")
+	speak_list = list("Ping!","Beep!","Woof!")
 	emote_see = list("goes rogue.", "sniffs out non-humans.")
 	desc = "Result of robotics budget cuts."
 
 /datum/dog_fashion/head/ghost
 	name = "\improper Ghost"
-	speak = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
+	speak_list = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
 	emote_see = list("stumbles around.", "shivers.")
 	emote_hear = list("howls!","groans.")
 	desc = "Spooky!"
@@ -168,7 +168,7 @@
 /datum/dog_fashion/head/clown
 	name = "REAL_NAME the Clown"
 	desc = "Honkman's best friend."
-	speak = list("HONK!", "Honk!")
+	speak_list = list("HONK!", "Honk!")
 	emote_see = list("plays tricks.", "slips.")
 
 /datum/dog_fashion/back/deathsquad

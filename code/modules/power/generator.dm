@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/thermoelectric.dmi'
 	icon_state = "teg-unassembled"
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	integrity_failure = 75
 
 	var/obj/machinery/atmospherics/components/binary/circulator/cold_circ

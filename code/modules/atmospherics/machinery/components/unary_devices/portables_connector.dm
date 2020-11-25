@@ -3,7 +3,7 @@
 	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
 	can_unwrench = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	level = 0
 	layer = GAS_FILTER_LAYER
 	shift_underlay_only = FALSE
@@ -36,7 +36,7 @@
 		return
 	update_parents()
 
-/obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/unary/portables_connector/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], detach [connected_device] first!</span>")

@@ -530,13 +530,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				fuel -= 5
 				if(turns == 2 && prob(30))
 					event = ORION_TRAIL_COLLISION
-					event()
+					handle_event()
 				else if(prob(75))
 					event = pickweight(events)
 					if(lings_aboard)
 						if(event == ORION_TRAIL_LING || prob(55))
 							event = ORION_TRAIL_LING_ATTACK
-					event()
+					handle_event()
 				turns += 1
 			if(obj_flags & EMAGGED)
 				var/mob/living/carbon/M = usr //for some vars
@@ -644,14 +644,14 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		if(event == ORION_TRAIL_FLUX)
 			if(prob(75))
 				event = "Breakdown"
-				event()
+				handle_event()
 			else
 				event = null
 	else if(href_list["blackhole"]) //keep speed past a black hole
 		if(turns == 7)
 			if(prob(75))
 				event = ORION_TRAIL_BLACKHOLE
-				event()
+				handle_event()
 				if(obj_flags & EMAGGED)
 					playsound(loc, 'sound/effects/supermatter.ogg', 100, 1)
 					say("A miniature black hole suddenly appears in front of [src], devouring [usr] alive!")
@@ -694,7 +694,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 	//Spaceport specific interactions
 	//they get a header because most of them don't reset event (because it's a shop, you leave when you want to)
-	//they also call event() again, to regen the eventdata, which is kind of odd but necessary
+	//they also call handle_event() again, to regen the eventdata, which is kind of odd but necessary
 	else if(href_list["buycrew"]) //buy a crewmember
 		if(gameStatus == ORION_STATUS_MARKET)
 			if(!spaceport_raided && food >= 10 && fuel >= 10)
@@ -702,7 +702,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				last_spaceport_action = "You hired [bought] as a new crewmember."
 				fuel -= 10
 				food -= 10
-				event()
+				handle_event()
 
 	else if(href_list["sellcrew"]) //sell a crewmember
 		if(gameStatus == ORION_STATUS_MARKET)
@@ -711,7 +711,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 				last_spaceport_action = "You sold your crewmember, [sold]!"
 				fuel += 7
 				food += 7
-				event()
+				handle_event()
 
 	else if(href_list["leave_spaceport"])
 		if(gameStatus == ORION_STATUS_MARKET)
@@ -753,7 +753,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 
 				fuel += FU
 				food += FO
-				event()
+				handle_event()
 
 	else if(href_list["buyparts"])
 		if(gameStatus == ORION_STATUS_MARKET)
@@ -769,7 +769,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 						electronics++
 						last_spaceport_action = "Bought Spare Electronics"
 				fuel -= 5 //they all cost 5
-				event()
+				handle_event()
 
 	else if(href_list["trade"])
 		if(gameStatus == ORION_STATUS_MARKET)
@@ -780,13 +780,13 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 							fuel -= 5
 							food += 5
 							last_spaceport_action = "Traded Fuel for Food"
-							event()
+							handle_event()
 					if(2) //Food
 						if(food > 5)
 							fuel += 5
 							food -= 5
 							last_spaceport_action = "Traded Food for Fuel"
-							event()
+							handle_event()
 
 	add_fingerprint(usr)
 	updateUsrDialog()
@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 	return
 
 
-/obj/machinery/computer/arcade/orion_trail/proc/event()
+/obj/machinery/computer/arcade/orion_trail/proc/handle_event()
 	eventdat = "<center><h1>[event]</h1></center>"
 	canContinueEvent = 0
 	switch(event)

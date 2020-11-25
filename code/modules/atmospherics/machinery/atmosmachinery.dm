@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		return ..()
 
 /obj/machinery/atmospherics/wrench_act(mob/living/user, obj/item/I)
-	if(!can_unwrench(user))
+	if(!check_can_unwrench(user))
 		return ..()
 
 	var/turf/T = get_turf(src)
@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(pipeimages)
 		deconstruct(TRUE)
 	return TRUE
 
-/obj/machinery/atmospherics/proc/can_unwrench(mob/user)
+/obj/machinery/atmospherics/proc/check_can_unwrench(mob/user)
 	return can_unwrench
 
 // Throws the user when they unwrench a pipe with a major difference between the internal and environmental pressure.

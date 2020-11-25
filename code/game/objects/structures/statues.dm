@@ -14,7 +14,7 @@
 	var/oreAmount = 5
 	var/material_drop_type = /obj/item/stack/sheet/metal
 	var/impressiveness = 15
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 
 /obj/structure/statue/Initialize()
 	. = ..()

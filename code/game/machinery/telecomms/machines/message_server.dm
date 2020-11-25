@@ -11,7 +11,7 @@
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 	armor = list("melee" = 25, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
@@ -78,7 +78,7 @@
 	name = "Messaging Server"
 	desc = "A machine that processes and routes PDA and request console messages."
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/telecomms/message_server

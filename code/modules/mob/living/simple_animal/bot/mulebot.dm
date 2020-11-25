@@ -351,10 +351,10 @@
 	if(!istype(AM))
 		return
 
-	load(AM)
+	load_crate(AM)
 
 // called to load a crate
-/mob/living/simple_animal/bot/mulebot/proc/load(atom/movable/AM)
+/mob/living/simple_animal/bot/mulebot/proc/load_crate(atom/movable/AM)
 	if(load ||  AM.anchored)
 		return
 
@@ -625,7 +625,7 @@
 				else			// otherwise, look for crates only
 					AM = locate(/obj/structure/closet/crate) in get_step(loc,loaddir)
 				if(AM && AM.Adjacent(src))
-					load(AM)
+					load_crate(AM)
 					if(report_delivery)
 						speak("Now loading [load] at <b>[get_area_name(src)]</b>.", radio_channel)
 		// whatever happened, check to see if we return home

@@ -285,7 +285,7 @@ Difficulty: Very Hard
 	max_n_of_items = INFINITY
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | ACID_PROOF
 	pixel_y = -4
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	supports_full_indicator_state = FALSE
 	supports_retrieval_state = FALSE
 	supports_capacity_indication = FALSE
@@ -402,7 +402,7 @@ Difficulty: Very Hard
 	icon_state = "anomaly_crystal"
 	light_range = 8
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | ACID_PROOF
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	anchored = FALSE
 	density = TRUE
 	flags_1 = HEAR_1

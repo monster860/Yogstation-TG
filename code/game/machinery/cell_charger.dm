@@ -3,7 +3,7 @@
 	desc = "It charges power cells."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 60
 	power_channel = EQUIP

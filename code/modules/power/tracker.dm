@@ -9,7 +9,7 @@
 	icon = 'goon/icons/obj/power.dmi'
 	icon_state = "tracker"
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	max_integrity = 250
 	integrity_failure = 0.2
 

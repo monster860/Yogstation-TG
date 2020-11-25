@@ -47,7 +47,7 @@
 					var/datum/component/storage/old_other_storage = twin.GetComponent(/datum/component/storage)
 					old_other_storage.RemoveComponent()
 					var/datum/component/storage/this_storage = GetComponent(/datum/component/storage)
-					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.master()) // add a slave storage component
+					var/datum/component/storage/twin_storage = twin.AddComponent(/datum/component/storage/bluespace/bag_of_holding, this_storage.get_master()) // add a slave storage component
 					twin_storage.allow_big_nesting = TRUE
 					twin_storage.max_w_class = WEIGHT_CLASS_GIGANTIC
 					twin_storage.max_combined_w_class = 35
@@ -136,7 +136,7 @@
 	if(slot == SLOT_HEAD)
 		// time to wonkize this shit
 		var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-		var/datum/component/storage/concrete/master = STR.master()
+		var/datum/component/storage/concrete/master = STR.get_master()
 		var/list/eye_list = master.slaves + master - STR
 		if(eye_list.len)
 			var/datum/component/storage/chosen = pick(eye_list)

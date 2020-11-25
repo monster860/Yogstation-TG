@@ -5,7 +5,7 @@
 	icon_state = "bicycle"
 	density = TRUE
 	anchored =  TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	can_buckle = 1
 	buckle_lying = 0
 

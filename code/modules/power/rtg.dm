@@ -7,7 +7,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "rtg"
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	circuit = /obj/item/circuitboard/machine/rtg
 
 	// You can buckle someone to RTG, then open its panel. Fun stuff.

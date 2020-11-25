@@ -356,7 +356,7 @@
 	name = real_name
 	desc = initial(desc)
 	// BYOND/DM doesn't support the use of initial on lists.
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
+	speak_list = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks!", "woofs!", "yaps.","pants.")
 	emote_see = list("shakes its head.", "chases its tail.","shivers.")
@@ -550,7 +550,7 @@
 
 /mob/living/simple_animal/pet/dog/corgi/narsie/update_corgi_fluff()
 	..()
-	speak = list("Tari'karat-pasnar!", "IA! IA!", "BRRUUURGHGHRHR")
+	speak_list = list("Tari'karat-pasnar!", "IA! IA!", "BRRUUURGHGHRHR")
 	speak_emote = list("growls", "barks ominously")
 	emote_hear = list("barks echoingly!", "woofs hauntingly!", "yaps in an eldritch manner.", "mutters something unspeakable.")
 	emote_see = list("communes with the unnameable.", "ponders devouring some souls.", "shakes.")

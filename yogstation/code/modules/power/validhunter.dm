@@ -5,7 +5,7 @@
 	icon_state = "throw_me_in_the_trash_and_feed_my_remains_to_the_devil"
 	density = TRUE
 	anchored = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 
 	var/power_per_antag = 10000000 // 100MW
 	var/operating = FALSE //Is it on?

@@ -56,7 +56,7 @@
 	if(..())
 		return
 	var/mob/living/silicon/robot/R = usr
-	R.radio.interact(R)
+	R.silicon_radio.interact(R)
 
 /obj/screen/robot/store
 	name = "store"

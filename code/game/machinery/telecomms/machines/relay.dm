@@ -11,7 +11,7 @@
 	icon_state = "relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 30
 	netspeed = 5
 	long_range_link = 1

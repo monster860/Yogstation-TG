@@ -208,7 +208,7 @@
 	desc = "A lighting fixture."
 	layer = WALL_OBJ_LAYER
 	max_integrity = 100
-	use_power = ACTIVE_POWER_USE
+	power_use = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -380,14 +380,14 @@
 				if(trigger)
 					burn_out()
 			else
-				use_power = ACTIVE_POWER_USE
+				power_use = ACTIVE_POWER_USE
 				set_light(BR, PO, CO)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 		emergency_mode = TRUE
 		START_PROCESSING(SSmachines, src)
 	else
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 		set_light(0)
 	update_icon()
 

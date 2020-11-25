@@ -6,7 +6,7 @@
 
 	name = "air scrubber"
 	desc = "Has a valve and pump attached to it."
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 60
 	can_unwrench = TRUE
@@ -268,7 +268,7 @@
 		add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

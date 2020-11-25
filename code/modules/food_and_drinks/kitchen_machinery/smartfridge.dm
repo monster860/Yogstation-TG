@@ -14,7 +14,7 @@
 	max_integrity = 300
 	integrity_failure = 100
 	armor = list("melee" = 20, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 70)
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
 	circuit = /obj/item/circuitboard/machine/smartfridge
@@ -391,7 +391,7 @@
 	desc = "A wooden contraption, used to dry plant products, food and leather."
 	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "drying_rack"
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 200
 	supports_full_indicator_state = FALSE //whether or not the smartfridge supports a full inventory indicator icon state
@@ -489,10 +489,10 @@
 /obj/machinery/smartfridge/drying_rack/proc/toggle_drying(forceoff)
 	if(drying || forceoff)
 		drying = FALSE
-		use_power = IDLE_POWER_USE
+		power_use = IDLE_POWER_USE
 	else
 		drying = TRUE
-		use_power = ACTIVE_POWER_USE
+		power_use = ACTIVE_POWER_USE
 	update_icon()
 
 /obj/machinery/smartfridge/drying_rack/proc/rack_dry()

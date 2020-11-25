@@ -10,7 +10,7 @@
 	icon_state = "grill_open"
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	var/grill_fuel = 0
 	var/obj/item/reagent_containers/food/grilled_item
 	var/grill_time = 0

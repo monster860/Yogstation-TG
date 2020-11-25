@@ -4,7 +4,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 500
 	circuit = /obj/item/circuitboard/machine/gibber

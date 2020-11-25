@@ -172,7 +172,7 @@ Passive gate is similar to the regular pump except:
 	broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/components/binary/passive_gate/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/binary/passive_gate/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on)
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

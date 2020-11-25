@@ -707,7 +707,7 @@
 /obj/machinery/recharger{
 	active_power_usage = 0;
 	idle_power_usage = 0;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,

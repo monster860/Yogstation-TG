@@ -50,7 +50,7 @@
 	desc = "A control terminal for the area's electrical systems."
 
 	icon_state = "apc0"
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	req_access = list(ACCESS_ENGINE_EQUIP) // Yogs -- changed to allow for use of req_one_access
 	max_integrity = 200
 	integrity_failure = 50
@@ -1019,7 +1019,7 @@
 				. = TRUE
 		if("hack")
 			if(get_malf_status(usr))
-				malfhack(usr)
+				do_malfhack(usr)
 		if("occupy")
 			if(get_malf_status(usr))
 				malfoccupy(usr)
@@ -1048,7 +1048,7 @@
 	update()
 	update_icon()
 
-/obj/machinery/power/apc/proc/malfhack(mob/living/silicon/ai/malf)
+/obj/machinery/power/apc/proc/do_malfhack(mob/living/silicon/ai/malf)
 	if(!istype(malf))
 		return
 	if(get_malf_status(malf) != 1)

@@ -26,7 +26,7 @@ God bless America.
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "fryer_off"
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	layer = BELOW_OBJ_LAYER
 	var/obj/item/reagent_containers/food/snacks/deepfryholder/frying	//What's being fried RIGHT NOW?

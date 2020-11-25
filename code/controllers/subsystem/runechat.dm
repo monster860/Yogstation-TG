@@ -159,8 +159,10 @@ SUBSYSTEM_DEF(runechat)
 				prev.next = next
 				next.prev = prev
 			else
-				prev?.next = null
-				next?.prev = null
+				if(prev)
+					prev.next = null
+				if(next)
+					next.prev = null
 			prev = next = null
 		scheduled_destruction = new_sched_destruction
 
@@ -229,8 +231,10 @@ SUBSYSTEM_DEF(runechat)
 		prev.next = next
 		next.prev = prev
 	else
-		prev?.next = null
-		next?.prev = null
+		if(prev)
+			prev.next = null
+		if(next)
+			next.prev = null
 	prev = next = null
 
 #undef BUCKET_LEN

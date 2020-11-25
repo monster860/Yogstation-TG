@@ -956,7 +956,7 @@
 	icon_state = "soil"
 	circuit = null
 	density = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	flags_1 = NODECONSTRUCT_1
 	unwrenchable = FALSE
 

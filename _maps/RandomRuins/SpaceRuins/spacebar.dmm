@@ -896,7 +896,7 @@
 	name = "Emergency NanoMed";
 	pixel_x = -32;
 	req_access_txt = "0";
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/floor/plasteel,
 /area/ruin/space/has_grav/powered/spacebar)

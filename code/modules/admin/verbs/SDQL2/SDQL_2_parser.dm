@@ -92,7 +92,7 @@
 	var/list/options = list()
 	if(tokenl(i) == "using")
 		i = option_assignments(i + 1, node, options)
-	query(i, node)
+	any_query(i, node)
 	if(length(options))
 		node["options"] = options
 
@@ -119,7 +119,7 @@
 	return i
 
 //query:	select_query | delete_query | update_query
-/datum/SDQL_parser/proc/query(i, list/node)
+/datum/SDQL_parser/proc/any_query(i, list/node)
 	query_type = tokenl(i)
 
 	switch(query_type)
@@ -138,7 +138,7 @@
 		if("explain")
 			node += "explain"
 			node["explain"] = list()
-			query(i + 1, node["explain"])
+			any_query(i + 1, node["explain"])
 
 
 //	select_query:	'SELECT' object_selectors

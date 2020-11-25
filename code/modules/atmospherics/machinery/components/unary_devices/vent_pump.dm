@@ -11,7 +11,7 @@
 	name = "air vent"
 	desc = "Has a valve and pump attached to it."
 
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	can_unwrench = TRUE
 	welded = FALSE
 	level = 1
@@ -322,7 +322,7 @@
 		add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
+/obj/machinery/atmospherics/components/unary/vent_pump/check_can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
 		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first!</span>")

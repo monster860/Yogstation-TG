@@ -24360,7 +24360,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_y = 26;
-	use_power = 0
+	power_use = 0
 	},
 /obj/machinery/camera{
 	c_tag = "Security - Medbay";
@@ -80269,7 +80269,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = 26;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -107069,7 +107069,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = 26;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel/white,
@@ -116639,7 +116639,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_x = 26;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1

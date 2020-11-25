@@ -315,7 +315,7 @@
 	action_icon = 'yogstation/icons/mob/actions.dmi'
 	action_icon_state = "commune"
 
-/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user,mob/user = usr)
+/obj/effect/proc_holder/spell/self/shadowling_hivemind/cast(mob/living/user = usr)
 	if(!is_shadow(user))
 		to_chat(user, "<span class='warning'>You must be a shadowling to do that!</span>")
 		return
@@ -458,7 +458,8 @@
 	else
 		//We did it
 		to_chat(user, "<span class='shadowling'>You return the APC's power to the void, disabling it.</span>")
-		target_apc.cell?.charge = 0	//Sent to the shadow realm
+		if(target_apc.cell)
+			target_apc.cell.charge = 0	//Sent to the shadow realm
 		target_apc.chargemode = 0 //Won't recharge either until an engineer hits the button
 		target_apc.charging = 0
 		target_apc.update_icon()

@@ -170,12 +170,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/job
 	var/realvoice // Yogs -- new UUID, basically, I guess
 	var/atom/movable/source
-	var/obj/item/radio/radio
+	var/obj/item/radio/the_radio
 
 INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 /atom/movable/virtualspeaker/Initialize(mapload, atom/movable/M, radio)
 	. = ..()
-	radio = radio
+	the_radio = radio
 	source = M
 	if (istype(M))
 		name = M.GetVoice()
@@ -228,4 +228,4 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 // Yogs end
 
 /atom/movable/virtualspeaker/GetRadio()
-	return radio
+	return the_radio

@@ -5910,7 +5910,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_y = 32;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -13337,7 +13337,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_y = -32;
-	use_power = 0
+	power_use = 0
 	},
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -17976,7 +17976,7 @@
 /obj/machinery/sleeper{
 	controls_inside = 1;
 	dir = 4;
-	use_power = 0
+	power_use = 0
 	},
 /obj/machinery/door/firedoor/border_only{
 	dir = 1
@@ -19104,7 +19104,7 @@
 /area/holodeck/rec_center/medical)
 "NT" = (
 /obj/structure/window/paperframe{
-	CanAtmosPass = 0
+	atmos_pass_mode = 0
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -22474,7 +22474,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	pixel_y = 28;
-	use_power = 0
+	power_use = 0
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -23370,7 +23370,7 @@
 "XA" = (
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
-	use_power = 0
+	power_use = 0
 	},
 /turf/closed/wall/mineral/titanium,
 /area/centcom/evac)

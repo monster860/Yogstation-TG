@@ -8,7 +8,7 @@
 	opacity = 0
 	anchored = TRUE
 	layer = BELOW_MOB_LAYER
-	CanAtmosPass = ATMOS_PASS_PROC
+	atmos_pass_mode = ATMOS_PASS_PROC
 	var/point_return = 0 //How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
 	max_integrity = 30
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 80, "acid" = 70)

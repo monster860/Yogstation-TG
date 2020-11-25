@@ -183,7 +183,7 @@ Contents:
 		ninja_sword_recall()
 		return TRUE
 	if(istype(action, /datum/action/item_action/ninja_stealth))
-		stealth()
+		stealth_action()
 		return TRUE
 	if(istype(action, /datum/action/item_action/toggle_glove))
 		n_gloves.toggledrain()

@@ -283,7 +283,7 @@
 /obj/machinery/computer/camera_advanced/ratvar
 	name = "ratvarian camera observer"
 	desc = "A console used to snoop on the station's goings-on. A jet of steam occasionally whooshes out from slats on its sides."
-	use_power = FALSE
+	power_use = FALSE
 	networks = list("ss13", "minisat") //:eye:
 	var/datum/action/innate/servant_warp/warp_action = new
 

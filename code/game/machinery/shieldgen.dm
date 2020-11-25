@@ -9,7 +9,7 @@
 	anchored = TRUE
 	resistance_flags = LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	max_integrity = 200 //The shield can only take so much beating (prevents perma-prisons)
-	CanAtmosPass = ATMOS_PASS_DENSITY
+	atmos_pass_mode = ATMOS_PASS_DENSITY
 
 /obj/structure/emergency_shield/Initialize()
 	. = ..()
@@ -220,7 +220,7 @@
 	density = TRUE
 	req_access = list(ACCESS_TELEPORTER)
 	flags_1 = CONDUCT_1
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	max_integrity = 300
 	var/active = FALSE
 	var/power = 0
@@ -240,7 +240,7 @@
 		cleanup_field(d)
 	return ..()
 
-/obj/machinery/shieldwallgen/proc/power()
+/obj/machinery/shieldwallgen/proc/do_power()
 	if(!anchored)
 		power = 0
 		return
@@ -261,7 +261,7 @@
 		PN.load += avail_power //uses powernet power.
 
 /obj/machinery/shieldwallgen/process()
-	power()
+	do_power()
 	use_stored_power(50)
 
 /obj/machinery/shieldwallgen/proc/use_stored_power(amount)

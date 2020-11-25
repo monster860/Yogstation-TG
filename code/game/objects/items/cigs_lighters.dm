@@ -142,7 +142,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
 	if(starts_lit)
-		light()
+		do_light()
 	AddComponent(/datum/component/knockoff,90,list(BODY_ZONE_PRECISE_MOUTH),list(SLOT_WEAR_MASK))//90% to knock off when wearing a mask
 
 /obj/item/clothing/mask/cigarette/Destroy()
@@ -153,7 +153,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!lit && smoketime > 0)
 		var/lighting_text = W.ignition_effect(src, user)
 		if(lighting_text)
-			light(lighting_text)
+			do_light(lighting_text)
 	else
 		return ..()
 
@@ -171,7 +171,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				to_chat(user, "<span class='notice'>[src] is full.</span>")
 
 
-/obj/item/clothing/mask/cigarette/proc/light(flavor_text = null)
+/obj/item/clothing/mask/cigarette/proc/do_light(flavor_text = null)
 	if(lit)
 		return
 	if(!(flags_1 & INITIALIZED_1))
@@ -279,7 +279,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(!istype(M))
 		return ..()
 	if(M.on_fire && !lit)
-		light("<span class='notice'>[user] lights [src] with [M]'s burning body. What a cold-blooded badass.</span>")
+		do_light("<span class='notice'>[user] lights [src] with [M]'s burning body. What a cold-blooded badass.</span>")
 		return
 	var/obj/item/clothing/mask/cigarette/cig = help_light_cig(M)
 	if(lit && cig && user.a_intent == INTENT_HELP)
@@ -293,7 +293,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		return ..()
 
 /obj/item/clothing/mask/cigarette/fire_act(exposed_temperature, exposed_volume)
-	light()
+	do_light()
 
 /obj/item/clothing/mask/cigarette/is_hot()
 	return lit * heat
@@ -494,7 +494,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/lighting_text = O.ignition_effect(src,user)
 		if(lighting_text)
 			if(smoketime > 0)
-				light(lighting_text)
+				do_light(lighting_text)
 			else
 				to_chat(user, "<span class='warning'>There is nothing to smoke!</span>")
 		else

@@ -12,7 +12,7 @@
 	icon_state = "icecream_vat"
 	density = TRUE
 	anchored = FALSE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	layer = BELOW_OBJ_LAYER
 	max_integrity = 300
 	var/list/product_types = list()

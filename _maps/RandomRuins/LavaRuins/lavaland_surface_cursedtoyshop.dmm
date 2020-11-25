@@ -590,7 +590,7 @@
 /obj/machinery/vending/wallmed{
 	name = "Emergency NanoMed";
 	req_access_txt = "0";
-	use_power = 0
+	power_use = 0
 	},
 /turf/closed/wall/mineral/wood,
 /area/ruin/powered)

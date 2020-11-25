@@ -6,7 +6,7 @@
 	icon_state = "TheSingGen"
 	anchored = FALSE
 	density = TRUE
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	resistance_flags = FIRE_PROOF
 
 	// You can buckle someone to the singularity generator, then start the engine. Fun!

@@ -257,7 +257,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 				return FALSE
 	return TRUE
 
-/obj/effect/proc_holder/spell/proc/invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
+/obj/effect/proc_holder/spell/proc/do_invocation(mob/user = usr) //spelling the spell out and setting it on recharge/reducing charges amount
 	switch(invocation_type)
 		if("shout")
 			if(prob(50))//Auto-mute? Fuck that noise
@@ -311,7 +311,7 @@ GLOBAL_LIST_INIT(spells, typesof(/obj/effect/proc_holder/spell)) //needed for th
 
 /obj/effect/proc_holder/spell/proc/perform(list/targets, recharge = TRUE, mob/user = usr) //if recharge is started is important for the trigger spells
 	before_cast(targets)
-	invocation(user)
+	do_invocation(user)
 	if(user && user.ckey)
 		user.log_message("<span class='danger'>cast the spell [name].</span>", LOG_ATTACK)
 	if(recharge)

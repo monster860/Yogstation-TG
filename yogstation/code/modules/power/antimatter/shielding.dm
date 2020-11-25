@@ -16,7 +16,7 @@
 	icon_state = "shield"
 	density = TRUE
 	dir = NORTH
-	use_power = NO_POWER_USE//Living things generally dont use power
+	power_use = NO_POWER_USE//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 

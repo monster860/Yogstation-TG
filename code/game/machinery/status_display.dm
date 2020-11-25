@@ -22,7 +22,7 @@
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
 	density = FALSE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 10
 	layer = ABOVE_WINDOW_LAYER
 

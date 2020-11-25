@@ -81,10 +81,10 @@
 	var/silent = FALSE
 	var/brightness_power = 5
 
-/mob/living/silicon/pai/can_unbuckle()
+/mob/living/silicon/pai/can_unbuckle_mob()
 	return FALSE
 
-/mob/living/silicon/pai/can_buckle()
+/mob/living/silicon/pai/can_buckle_mob()
 	return FALSE
 
 /mob/living/silicon/pai/Destroy()
@@ -111,8 +111,8 @@
 	job = "Personal AI"
 	signaler = new(src)
 	hostscan = new /obj/item/healthanalyzer(src)
-	if(!radio)
-		radio = new /obj/item/radio/headset/silicon/pai(src)
+	if(!silicon_radio)
+		silicon_radio = new /obj/item/radio/headset/silicon/pai(src)
 	newscaster = new /obj/machinery/newscaster(src)
 	if(!aicamera)
 		aicamera = new /obj/item/camera/siliconcam/ai_camera(src)
@@ -291,8 +291,8 @@
 	user.set_machine(src)
 	if(pai.encryptmod == TRUE)
 		if(W.tool_behaviour == TOOL_SCREWDRIVER)
-			pai.radio.attackby(W, user, params)
+			pai.silicon_radio.attackby(W, user, params)
 		else if(istype(W, /obj/item/encryptionkey))
-			pai.radio.attackby(W, user, params)
+			pai.silicon_radio.attackby(W, user, params)
 	else
 		to_chat(user, "Encryption Key ports not configured.")

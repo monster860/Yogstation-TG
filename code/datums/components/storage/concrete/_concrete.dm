@@ -31,7 +31,7 @@
 	_user_limbo = null
 	return ..()
 
-/datum/component/storage/concrete/master()
+/datum/component/storage/concrete/get_master()
 	return src
 
 /datum/component/storage/concrete/real_location()
@@ -151,7 +151,7 @@
 		slave.mob_item_insertion_feedback(usr, M, I)
 
 /datum/component/storage/concrete/handle_item_insertion(obj/item/I, prevent_warning = FALSE, mob/M, datum/component/storage/remote)		//Remote is null or the slave datum
-	var/datum/component/storage/concrete/master = master()
+	var/datum/component/storage/concrete/master = get_master()
 	var/atom/parent = src.parent
 	var/moved = FALSE
 	if(!istype(I))

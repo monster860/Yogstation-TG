@@ -35,13 +35,13 @@
 		return .
 
 	if(message_mods[MODE_HEADSET])
-		if(radio)
-			radio.talk_into(src, message, , spans, language, message_mods)
+		if(silicon_radio)
+			silicon_radio.talk_into(src, message, , spans, language, message_mods)
 		return REDUCE_RANGE
 
 	else if(message_mods[RADIO_EXTENSION] in GLOB.radiochannels)
-		if(radio)
-			radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		if(silicon_radio)
+			silicon_radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	return 0

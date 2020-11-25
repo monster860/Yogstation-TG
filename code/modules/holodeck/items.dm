@@ -150,7 +150,7 @@
 	var/area/currentarea = null
 	var/eventstarted = FALSE
 
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON

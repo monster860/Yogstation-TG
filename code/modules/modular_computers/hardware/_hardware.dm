@@ -82,7 +82,7 @@
 		. += "<span class='notice'>It seems to be slightly damaged.</span>"
 
 // Component-side compatibility check.
-/obj/item/computer_hardware/proc/can_install(obj/item/modular_computer/M, mob/living/user = null)
+/obj/item/computer_hardware/proc/check_can_install(obj/item/modular_computer/M, mob/living/user = null)
 	return can_install
 
 // Called when component is installed into PC.

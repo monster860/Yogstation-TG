@@ -562,7 +562,7 @@
 	hackProof = TRUE
 	aiControlDisabled = AI_WIRE_DISABLED
 	req_access = list(ACCESS_CLOCKCULT)
-	use_power = FALSE
+	power_use = FALSE
 	resistance_flags = FIRE_PROOF | ACID_PROOF
 	damage_deflection = 30
 	normal_integrity = 240

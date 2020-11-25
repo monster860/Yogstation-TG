@@ -861,7 +861,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				S.pixel_y = -96
 				S.grav_pull = 0
 				//S.consume_range = 3
-				S.dissipate = 0
+				S.dissipate_enabled = 0
 				//S.dissipate_delay = 10
 				//S.dissipate_track = 0
 				//S.dissipate_strength = 10

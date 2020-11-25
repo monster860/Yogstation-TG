@@ -219,6 +219,7 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 
 
 /mob/living/simple_animal/bot/honkbot/handle_automated_action()
+	set waitfor = 0
 	if(!..())
 		return
 
@@ -246,7 +247,6 @@ Maintenance panel panel is [open ? "opened" : "closed"]"},
 						honk_attack(target)
 					else
 						if(threatlevel >= 6)
-							set waitfor = 0
 							stun_attack(target)
 							anchored = FALSE
 							target_lastloc = target.loc

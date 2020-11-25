@@ -6,7 +6,7 @@
 	icon_state = "processor1"
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 50
 	circuit = /obj/item/circuitboard/machine/processor

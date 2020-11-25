@@ -55,10 +55,10 @@
 	var/key = dictionary_key ? dictionary_key : holder_type
 
 	if(randomize)
-		randomize()
+		do_randomize()
 	else
 		if(!GLOB.wire_color_directory[key])
-			randomize()
+			do_randomize()
 			GLOB.wire_color_directory[key] = colors
 			GLOB.wire_name_directory[key] = proper_name
 		else
@@ -76,7 +76,7 @@
 			continue
 		wires += dud
 
-/datum/wires/proc/randomize()
+/datum/wires/proc/do_randomize()
 	var/static/list/possible_colors = list(
 	"blue",
 	"brown",
@@ -103,7 +103,7 @@
 
 /datum/wires/proc/shuffle_wires()
 	colors.Cut()
-	randomize()
+	do_randomize()
 
 /datum/wires/proc/repair()
 	cut_wires.Cut()

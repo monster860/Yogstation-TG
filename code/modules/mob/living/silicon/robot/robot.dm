@@ -128,7 +128,7 @@
 
 	update_law_history() //yogs
 
-	radio = new /obj/item/radio/borg(src)
+	silicon_radio = new /obj/item/radio/borg(src)
 	if(!scrambledcodes && !builtInCamera)
 		builtInCamera = new (src)
 		builtInCamera.c_tag = real_name
@@ -190,9 +190,9 @@
 	if(shell)
 		GLOB.available_ai_shells -= src
 	else
-		if(T && istype(radio) && istype(radio.keyslot))
-			radio.keyslot.forceMove(T)
-			radio.keyslot = null
+		if(T && istype(silicon_radio) && istype(silicon_radio.keyslot))
+			silicon_radio.keyslot.forceMove(T)
+			silicon_radio.keyslot = null
 	qdel(wires)
 	qdel(module)
 	qdel(eye_lights)
@@ -281,7 +281,7 @@
 	alerts.set_content(dat)
 	alerts.open()
 
-/mob/living/silicon/robot/proc/ionpulse()
+/mob/living/silicon/robot/proc/do_ionpulse()
 	if(!ionpulse_on)
 		return
 
@@ -459,8 +459,8 @@
 	else if(W.tool_behaviour == TOOL_SCREWDRIVER && opened && cell)	// radio
 		if(shell)
 			to_chat(user, "<span class='notice'>You cannot seem to open the radio compartment.</span>")	//Prevent AI radio key theft
-		else if(radio)
-			radio.attackby(W,user)//Push it to the radio to let it handle everything
+		else if(silicon_radio)
+			silicon_radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			to_chat(user, "<span class='warning'>Unable to locate a radio!</span>")
 		update_icons()
@@ -500,8 +500,8 @@
 		return
 
 	else if(istype(W, /obj/item/encryptionkey/) && opened)
-		if(radio)//sanityyyyyy
-			radio.attackby(W,user)//GTFO, you have your own procs
+		if(silicon_radio)//sanityyyyyy
+			silicon_radio.attackby(W,user)//GTFO, you have your own procs
 		else
 			to_chat(user, "<span class='warning'>Unable to locate a radio!</span>")
 
@@ -841,7 +841,7 @@
 /mob/living/silicon/robot/modules/syndicate/Initialize()
 	. = ..()
 	cell = new /obj/item/stock_parts/cell/hyper(src, 25000)
-	radio = new /obj/item/radio/borg/syndicate(src)
+	silicon_radio = new /obj/item/radio/borg/syndicate(src)
 	laws = new /datum/ai_laws/syndicate_override()
 	addtimer(CALLBACK(src, .proc/show_playstyle), 5)
 
@@ -1115,13 +1115,13 @@
 	mainframe.connected_robots |= src
 	lawupdate = TRUE
 	lawsync()
-	if(radio && AI.radio) //AI keeps all channels, including Syndie if it is a Traitor
-		if(AI.radio.syndie)
-			radio.make_syndie()
-		radio.subspace_transmission = TRUE
-		radio.channels = AI.radio.channels
-		for(var/chan in radio.channels)
-			radio.secure_radio_connections[chan] = add_radio(radio, GLOB.radiochannels[chan])
+	if(silicon_radio && AI.silicon_radio) //AI keeps all channels, including Syndie if it is a Traitor
+		if(AI.silicon_radio.syndie)
+			silicon_radio.make_syndie()
+		silicon_radio.subspace_transmission = TRUE
+		silicon_radio.channels = AI.silicon_radio.channels
+		for(var/chan in silicon_radio.channels)
+			silicon_radio.secure_radio_connections[chan] = add_radio(silicon_radio, GLOB.radiochannels[chan])
 
 	diag_hud_set_aishell()
 	undeployment_action.Grant(src)
@@ -1151,8 +1151,8 @@
 	deployed = FALSE
 	mainframe.deployed_shell = null
 	undeployment_action.Remove(src)
-	if(radio) //Return radio to normal
-		radio.recalculateChannels()
+	if(silicon_radio) //Return radio to normal
+		silicon_radio.recalculateChannels()
 	if(!QDELETED(builtInCamera))
 		builtInCamera.c_tag = real_name	//update the camera name too
 	diag_hud_set_aishell()

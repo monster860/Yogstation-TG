@@ -159,7 +159,6 @@
 			M.environment_type = src.environment_type
 			M.turf_type = src.turf_type
 			M.baseturfs = src.baseturfs
-			src = M
 			M.levelupdate()
 
 /turf/closed/mineral/random/more_caves/icemoon

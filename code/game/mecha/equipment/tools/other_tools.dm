@@ -60,7 +60,6 @@
 	var/turf/T = get_turf(target)
 	message_admins("[ADMIN_LOOKUPFLW(chassis.occupant)] used a Wormhole Generator in [ADMIN_VERBOSEJMP(T)]")
 	log_game("[key_name(chassis.occupant)] used a Wormhole Generator in [AREACOORD(T)]")
-	src = null
 	QDEL_LIST_IN(created, rand(150,300))
 	return 1
 

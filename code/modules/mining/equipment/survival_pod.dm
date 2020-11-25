@@ -236,7 +236,7 @@
 	density = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 5
-	CanAtmosPass = ATMOS_PASS_NO
+	atmos_pass_mode = ATMOS_PASS_NO
 
 /obj/structure/fans/deconstruct()
 	if(!(flags_1 & NODECONSTRUCT_1))

@@ -457,7 +457,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 		if(C)
 			var/oldsrc = src
 			var/amplitude = dizziness*(sin(dizziness * world.time) + 1) // This shit is annoying at high strength
-			src = null
 			spawn(0)
 				if(C)
 					temp = amplitude * sin(saved_dizz * world.time)
@@ -478,7 +477,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 					if(C)
 						C.pixel_x -= pixel_x_diff
 						C.pixel_y -= pixel_y_diff
-			src = oldsrc
 		dizziness = max(dizziness - restingpwr, 0)
 
 	if(drowsyness)

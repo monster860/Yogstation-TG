@@ -120,7 +120,7 @@
 		if(!next_dir)
 			break
 
-		exit_delay = current_tube.exit_delay(src, dir)
+		exit_delay = current_tube.get_exit_delay(src, dir)
 		last_delay += exit_delay
 
 		sleep(exit_delay)
@@ -138,7 +138,7 @@
 			Move(get_step(loc, dir), dir, DELAY_TO_GLIDE_SIZE(exit_delay)) // Allow collisions when leaving the tubes.
 			break
 
-		last_delay = current_tube.enter_delay(src, next_dir)
+		last_delay = current_tube.get_enter_delay(src, next_dir)
 		sleep(last_delay)
 		setDir(next_dir)
 		set_glide_size(DELAY_TO_GLIDE_SIZE(last_delay + exit_delay))

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
 	density = FALSE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 1000
 	req_access = list(ACCESS_ROBOTICS)
@@ -80,12 +80,12 @@
 
 /obj/machinery/recharge_station/open_machine()
 	. = ..()
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 
 /obj/machinery/recharge_station/close_machine()
 	. = ..()
 	if(occupant)
-		use_power = ACTIVE_POWER_USE //It always tries to charge, even if it can't.
+		power_use = ACTIVE_POWER_USE //It always tries to charge, even if it can't.
 		add_fingerprint(occupant)
 
 /obj/machinery/recharge_station/update_icon()

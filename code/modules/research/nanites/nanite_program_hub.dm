@@ -4,7 +4,7 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "nanite_program_hub"
 	circuit = /obj/item/circuitboard/machine/nanite_program_hub
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	anchored = TRUE
 	density = TRUE
 

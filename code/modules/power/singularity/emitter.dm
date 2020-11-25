@@ -14,7 +14,7 @@
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	circuit = /obj/item/circuitboard/machine/emitter
 
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 300
 
@@ -56,7 +56,7 @@
 	locked = TRUE
 	req_access_txt = "100"
 	state = EMITTER_WELDED
-	use_power = FALSE
+	power_use = FALSE
 
 /obj/machinery/power/emitter/Initialize()
 	. = ..()

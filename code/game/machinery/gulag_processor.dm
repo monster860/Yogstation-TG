@@ -21,7 +21,7 @@ GLOBAL_VAR_INIT(gulag_required_items, typecacheof(list(
 	icon_state = "implantchair"
 	state_open = FALSE
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	idle_power_usage = 200
 	active_power_usage = 5000
 	circuit = /obj/item/circuitboard/machine/gulag_processor

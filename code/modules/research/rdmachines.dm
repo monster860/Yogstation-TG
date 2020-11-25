@@ -6,7 +6,7 @@
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE
-	use_power = IDLE_POWER_USE
+	power_use = IDLE_POWER_USE
 	var/busy = FALSE
 	var/hacked = FALSE
 	var/console_link = TRUE		//allow console link.
