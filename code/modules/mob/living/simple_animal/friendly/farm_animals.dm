@@ -5,7 +5,7 @@
 	icon_state = "goat"
 	icon_living = "goat"
 	icon_dead = "goat_dead"
-	speak = list("EHEHEHEHEH","eh?")
+	speak_list = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.", "stamps a foot.", "glares around.")
@@ -120,7 +120,7 @@
 	icon_gib = "cow_gib"
 	gender = FEMALE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak = list("moo?","moo","MOOOOOO")
+	speak_list = list("moo?","moo","MOOOOOO")
 	speak_emote = list("moos","moos hauntingly")
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.")
@@ -201,7 +201,7 @@
 	icon_gib = "chick_gib"
 	gender = FEMALE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
+	speak_list = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	speak_emote = list("cheeps")
 	emote_hear = list("cheeps.")
 	emote_see = list("pecks at the ground.","flaps its tiny wings.")
@@ -251,7 +251,7 @@
 	icon_state = "chicken_brown"
 	icon_living = "chicken_brown"
 	icon_dead = "chicken_brown_dead"
-	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
+	speak_list = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
 	speak_emote = list("clucks","croons")
 	emote_hear = list("clucks.")
 	emote_see = list("pecks at the ground.","flaps its wings viciously.")
@@ -344,7 +344,7 @@
 	icon_dead = "sheep_dead"
 	gender = FEMALE
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak = list("baa?","baa","BAAAAAA")
+	speak_list = list("baa?","baa","BAAAAAA")
 	speak_emote = list("bleats")
 	emote_hear = list("brays.")
 	emote_see = list("nibbles at the ground.")

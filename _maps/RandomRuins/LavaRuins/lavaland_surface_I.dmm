@@ -88,7 +88,7 @@
 "hN" = (
 /mob/living/simple_animal/hostile/skeleton/templar{
 	aggro_vision_range = 3;
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_list = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
 	speak_chance = 0
 	},
 /turf/open/floor/plasteel/dark/lavaland,
@@ -111,7 +111,7 @@
 /area/ruin/unpowered)
 "on" = (
 /mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_list = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
 	speak_chance = 0
 	},
 /turf/open/floor/plasteel/dark/lavaland,
@@ -169,7 +169,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /mob/living/simple_animal/hostile/skeleton/templar{
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_list = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
 	speak_chance = 0
 	},
 /turf/open/floor/mineral/diamond,
@@ -215,7 +215,7 @@
 /obj/item/stack/sheet/mineral/gold,
 /mob/living/simple_animal/hostile/skeleton/templar{
 	aggro_vision_range = 3;
-	speak = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
+	speak_list = list("THE NECROPOLIS WILLS IT!","DEUS VULT!","REMOVE KABAB!");
 	speak_chance = 0
 	},
 /turf/open/floor/plasteel/dark/lavaland,

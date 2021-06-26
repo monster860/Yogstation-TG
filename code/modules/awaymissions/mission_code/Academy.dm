@@ -54,7 +54,7 @@
 
 
 /obj/singularity/academy
-	dissipate = 0
+	dissipate_enabled = 0
 	move_self = 0
 	grav_pull = 1
 

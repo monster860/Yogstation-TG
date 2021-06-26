@@ -39,7 +39,7 @@
 	maxHealth = 80
 	pass_flags = PASSTABLE | PASSMOB | PASSCOMPUTER
 
-	speak = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
+	speak_list = list("Hi!","Hello!","Cracker?","BAWWWWK george mellons griffing me!")
 	speak_emote = list("squawks","says","yells")
 	emote_hear = list("squawks.","bawks!")
 	emote_see = list("flutters its wings.")
@@ -369,7 +369,7 @@
 	..()
 	if(speech_buffer.len && prob(speech_shuffle_rate)) //shuffle out a phrase and add in a new one
 		if(speak_list.len)
-			speak.Remove(pick(speak_list))
+			speak_list.Remove(pick(speak_list))
 
 		speak_list.Add(pick(speech_buffer))
 
@@ -862,7 +862,7 @@
 /mob/living/simple_animal/parrot/Poly
 	name = "Poly"
 	desc = "Poly the Parrot. An expert on quantum cracker theory."
-	speak = list("Poly wanna cracker!", ":e Check the crystal, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE")
+	speak_list = list("Poly wanna cracker!", ":e Check the crystal, you chucklefucks!",":e Wire the solars, you lazy bums!",":e WHO TOOK THE DAMN HARDSUITS?",":e OH GOD ITS ABOUT TO DELAMINATE CALL THE SHUTTLE")
 	gold_core_spawnable = NO_SPAWN
 	speak_chance = 3
 	var/memory_saved = FALSE
@@ -1002,7 +1002,7 @@
 	icon_state = "clock_hawk_fly"
 	icon_living = "clock_hawk_fly"
 	icon_sit = "clock_hawk_sit"
-	speak = list("Penpxre!", "Ratvar vf n qhzo anzr naljnl!")
+	speak_list = list("Penpxre!", "Ratvar vf n qhzo anzr naljnl!")
 	speak_emote = list("squawks rustily", "says crassly", "yells brassly")
 	emote_hear = list("squawks rustily.", "bawks metallically!")
 	emote_see = list("flutters its metal wings.")

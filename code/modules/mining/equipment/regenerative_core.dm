@@ -103,7 +103,7 @@
 /obj/item/organ/regenerative_core/Insert(mob/living/carbon/M, special = 0, drop_if_replaced = TRUE)
 	. = ..()
 	if(!preserved && !inert)
-		preserved(TRUE)
+		make_preserved(TRUE)
 		owner.visible_message("<span class='notice'>[src] stabilizes as it's inserted.</span>")
 
 /obj/item/organ/regenerative_core/Remove(mob/living/carbon/M, special = 0)

@@ -12,7 +12,7 @@
 	max_integrity = 250
 	circuit = /obj/item/circuitboard/machine/electrolyzer
 	/// We don't use area power, we always use the cell
-	use_power = NO_POWER_USE
+	power_use = NO_POWER_USE
 	///used to check if there is a cell in the machine
 	var/obj/item/stock_parts/cell/cell
 	///check if the machine is on or off

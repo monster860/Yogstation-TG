@@ -7,7 +7,7 @@
 	icon_state = "moonrat"
 	icon_living = "moonrat"
 	icon_dead = "moonrat_dead"
-	speak = list("Squeak!","SQUEAK!","Squeak?")
+	speak_list = list("Squeak!","SQUEAK!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("squeaks.")
 	emote_see = list("runs in a circle.", "shakes.")

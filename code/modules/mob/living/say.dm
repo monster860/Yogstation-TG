@@ -353,12 +353,12 @@ GLOBAL_LIST_INIT(special_radio_keys, list(
 
 /mob/living/proc/radio(message, list/message_mods = list(), list/spans, language)
 	var/obj/item/implant/radio/imp = locate() in src
-	if(imp && imp.radio.on)
+	if(imp && imp.the_radio.on)
 		if(message_mods[MODE_HEADSET])
-			imp.radio.talk_into(src, message, , spans, language, message_mods)
+			imp.the_radio.talk_into(src, message, , spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
-		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in imp.radio.channels))
-			imp.radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
+		if(message_mods[RADIO_EXTENSION] == MODE_DEPARTMENT || (message_mods[RADIO_EXTENSION] in imp.the_radio.channels))
+			imp.the_radio.talk_into(src, message, message_mods[RADIO_EXTENSION], spans, language, message_mods)
 			return ITALICS | REDUCE_RANGE
 
 	switch(message_mods[RADIO_EXTENSION])

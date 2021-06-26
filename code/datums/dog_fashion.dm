@@ -26,7 +26,7 @@
 		D.emote_see = emote_see
 	if(emote_hear)
 		D.emote_hear = emote_hear
-	if(speak)
+	if(speak_list)
 		D.speak_list = speak_list
 	if(speak_emote)
 		D.speak_emote = speak_emote

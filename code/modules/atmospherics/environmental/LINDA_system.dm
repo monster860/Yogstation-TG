@@ -8,7 +8,7 @@
 		if (ATMOS_PASS_DENSITY)
 			return !density
 		else
-			return CanAtmosPass
+			return atmos_pass_mode
 
 /turf/atmos_pass_mode = ATMOS_PASS_NO
 /turf/atmos_pass_mode_vertical = ATMOS_PASS_NO

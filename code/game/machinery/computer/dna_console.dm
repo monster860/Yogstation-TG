@@ -595,7 +595,8 @@
 
 			// Create a new DNA Injector and add the appropriate mutations to it
 			var/obj/item/dnainjector/activator/I = new /obj/item/dnainjector/activator(loc)
-			I.add_mutations += new HM.type(copymut = HM)
+			var/datum/mutation/human/newmut = new HM.type(copymut = HM)
+			I.add_mutations += newmut
 
 			var/is_activator = text2num(params["is_activator"])
 
@@ -1278,7 +1279,8 @@
 			//  new injector
 			for(var/A in injector)
 				var/datum/mutation/human/HM = A
-				I.add_mutations += new HM.type(copymut=HM)
+				var/datum/mutation/human/newmut = new HM.type(copymut=HM)
+				I.add_mutations += newmut
 
 			// Force apply any mutations, this is functionality similar to mutators
 			I.doitanyway = TRUE

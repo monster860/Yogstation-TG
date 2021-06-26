@@ -71,7 +71,8 @@
 		mutation_type = HM.type
 	if(get_mutation(mutation_type))
 		return
-	return force_give(new mutation_type (class, time, copymut = mutation))
+	var/datum/mutation/human/mut = new mutation_type (class, time, copymut = mutation)
+	return force_give(mut)
 
 /datum/dna/proc/remove_mutation(mutation_type)
 	return force_lose(get_mutation(mutation_type))
@@ -377,7 +378,8 @@
 		for(var/M in mutations)
 			var/datum/mutation/human/HM = M
 			if(HM.allow_transfer || force_transfer_mutations)
-				dna.force_give(new HM.type(HM.class, copymut=HM)) //using force_give since it may include exotic mutations that otherwise wont be handled properly
+				var/datum/mutation/human/newmut = new HM.type(HM.class, copymut=HM)
+				dna.force_give(newmut) //using force_give since it may include exotic mutations that otherwise wont be handled properly
 
 /mob/living/carbon/proc/create_dna()
 	dna = new /datum/dna(src)

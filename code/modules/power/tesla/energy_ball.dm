@@ -14,7 +14,7 @@
 	contained = 0
 	density = TRUE
 	energy = 0
-	dissipate = 1
+	dissipate_enabled = 1
 	dissipate_delay = 5
 	dissipate_strength = 1
 	var/list/orbiting_balls = list()

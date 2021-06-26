@@ -105,14 +105,14 @@
 						<div class='header'>Electronics</div>
 						<div class='links'>
 						<b>Radio settings:</b><br>
-						Microphone: [radio? "<a href='?src=[REF(src)];rmictoggle=1'><span id=\"rmicstate\">[radio.broadcasting?"Engaged":"Disengaged"]</span></a>":"Error"]<br>
-						Speaker: [radio? "<a href='?src=[REF(src)];rspktoggle=1'><span id=\"rspkstate\">[radio.listening?"Engaged":"Disengaged"]</span></a>":"Error"]<br>
+						Microphone: [the_radio? "<a href='?src=[REF(src)];rmictoggle=1'><span id=\"rmicstate\">[the_radio.broadcasting?"Engaged":"Disengaged"]</span></a>":"Error"]<br>
+						Speaker: [the_radio? "<a href='?src=[REF(src)];rspktoggle=1'><span id=\"rspkstate\">[the_radio.listening?"Engaged":"Disengaged"]</span></a>":"Error"]<br>
 						Frequency:
-						[radio? "<a href='?src=[REF(src)];rfreq=-10'>-</a>":"-"]
-						[radio? "<a href='?src=[REF(src)];rfreq=-2'>-</a>":"-"]
-						<span id="rfreq">[radio?"[format_frequency(radio.frequency)]":"Error"]</span>
-						[radio? "<a href='?src=[REF(src)];rfreq=2'>+</a>":"+"]
-						[radio? "<a href='?src=[REF(src)];rfreq=10'>+</a><br>":"+"]
+						[the_radio? "<a href='?src=[REF(src)];rfreq=-10'>-</a>":"-"]
+						[the_radio? "<a href='?src=[REF(src)];rfreq=-2'>-</a>":"-"]
+						<span id="rfreq">[the_radio?"[format_frequency(the_radio.frequency)]":"Error"]</span>
+						[the_radio? "<a href='?src=[REF(src)];rfreq=2'>+</a>":"+"]
+						[the_radio? "<a href='?src=[REF(src)];rfreq=10'>+</a><br>":"+"]
 						</div>
 						</div>
 						<div class='wr'>
@@ -302,19 +302,19 @@
 			send_byjax(usr,"exosuit.browser","eq_list",src.get_equipment_list())
 
 	if(href_list["rmictoggle"])
-		radio.broadcasting = !radio.broadcasting
-		send_byjax(usr,"exosuit.browser","rmicstate",(radio.broadcasting?"Engaged":"Disengaged"))
+		the_radio.broadcasting = !the_radio.broadcasting
+		send_byjax(usr,"exosuit.browser","rmicstate",(the_radio.broadcasting?"Engaged":"Disengaged"))
 
 	if(href_list["rspktoggle"])
-		radio.listening = !radio.listening
-		send_byjax(usr,"exosuit.browser","rspkstate",(radio.listening?"Engaged":"Disengaged"))
+		the_radio.listening = !the_radio.listening
+		send_byjax(usr,"exosuit.browser","rspkstate",(the_radio.listening?"Engaged":"Disengaged"))
 
 	if(href_list["rfreq"])
-		var/new_frequency = (radio.frequency + text2num(href_list["rfreq"]))
-		if (!radio.freerange || (radio.frequency < MIN_FREE_FREQ || radio.frequency > MAX_FREE_FREQ))
+		var/new_frequency = (the_radio.frequency + text2num(href_list["rfreq"]))
+		if (!the_radio.freerange || (the_radio.frequency < MIN_FREE_FREQ || the_radio.frequency > MAX_FREE_FREQ))
 			new_frequency = sanitize_frequency(new_frequency)
-		radio.set_frequency(new_frequency)
-		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(radio.frequency)]")
+		the_radio.set_frequency(new_frequency)
+		send_byjax(usr,"exosuit.browser","rfreq","[format_frequency(the_radio.frequency)]")
 
 	if (href_list["change_name"])
 		var/userinput = stripped_input(occupant, "Choose new exosuit name", "Rename exosuit", "", MAX_NAME_LEN)

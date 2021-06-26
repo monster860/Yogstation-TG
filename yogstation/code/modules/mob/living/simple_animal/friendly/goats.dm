@@ -400,7 +400,7 @@
 	melee_damage_upper = 15
 	health = 100
 	maxHealth = 100
-	speak = list("YOUR TOO SLOW!","GOTTA GO FAST!","COME ON KEEP IT UP!")
+	speak_list = list("YOUR TOO SLOW!","GOTTA GO FAST!","COME ON KEEP IT UP!")
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/hostile/retaliate/goat/plunger
@@ -410,13 +410,13 @@
 	icon_state = "plungergoat"
 	icon_living = "plungergoat"
 	icon_dead = "plungergoat_dead"
-	speak = list("HoW I eAt gRaSS?!?","iS pLaNT gOoD fOr gOaT!?","wHy hOMmOnS sO mEaN!?")
+	speak_list = list("HoW I eAt gRaSS?!?","iS pLaNT gOoD fOr gOaT!?","wHy hOMmOnS sO mEaN!?")
 	gold_core_spawnable = NO_SPAWN
 
 /mob/living/simple_animal/spiffles
 	name = "Spiffles"
 	desc = "Unlike most goats this one has been raised to be as docile as possible making it the perfect pet!"
-	speak = list("EHEHEHEHEH","eh?")
+	speak_list = list("EHEHEHEHEH","eh?")
 	speak_emote = list("brays")
 	emote_hear = list("brays.")
 	emote_see = list("shakes its head.", "stamps a foot.", "looks around.")

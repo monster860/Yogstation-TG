@@ -93,7 +93,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/ticket_log/proc/toSanitizedString()
 	return "[gametime] - [user] - [text]"
 
-/datum/ticket_log/toString()
+/datum/ticket_log/proc/toUserString()
 	return "[gametime] - [isAdminComment() ? "<font color='red'>" : ""]<b>[istype(user, /client) ? key_name_params(user, 0, 0, null, parent) : user]</b>[isAdminComment() ? "</font>" : ""] - [text]"
 
 /datum/ticket_log/proc/toAdminString()
@@ -521,7 +521,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/datum/ticket_log/item = _interactions[i]
 		if(!usr.client.holder)
 			if(!item.for_admins)
-				content += "<p class='message-bar'>[item.toString()]</p>"
+				content += "<p class='message-bar'>[item.toUserString()]</p>"
 		else
 			content += "<p class='message-bar'>[item.toAdminString()]</p>"
 
@@ -529,7 +529,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	/*for(i = log.len; i > 0; i--)
 		var/datum/ticket_log/item = log[i]
 		if((item.for_admins && usr.client.holder) || !item.for_admins)
-			content += "<p class='message-bar'>[item.toString()]</p>"*/
+			content += "<p class='message-bar'>[item.toUserString()]</p>"*/
 
 	content += "</div>"
 

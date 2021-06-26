@@ -7,7 +7,7 @@
 	icon_dead = "bear_dead"
 	icon_gib = "bear_gib"
 	mob_biotypes = list(MOB_ORGANIC, MOB_BEAST)
-	speak = list("RAWR!","Rawr!","GRR!","Growl!")
+	speak_list = list("RAWR!","Rawr!","GRR!","Growl!")
 	speak_emote = list("growls", "roars")
 	emote_hear = list("rawrs.","grumbles.","grawls.")
 	emote_taunt = list("stares ferociously", "stomps")

@@ -6,7 +6,7 @@
 	icon_living = "wizardtrey"
 	icon_dead = "wizardtrey_dead"
 	speak_emote = list("stutters")
-	speak = list("o-oh god", "p-please d-ie", "ei n-nath?")
+	speak_list = list("o-oh god", "p-please d-ie", "ei n-nath?")
 	speak_chance = 1
 
 /mob/living/simple_animal/hostile/wizard/cloaked

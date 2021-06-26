@@ -198,7 +198,7 @@
 	var/obj/item/clothing/mask/cigarette/syndicate/cig = H.get_item_by_slot(SLOT_WEAR_MASK)
 
 	// pre-light their cig for extra badass
-	cig.light()
+	cig.do_light()
 
 /datum/contractor_item/contractor_partner/proc/spawn_contractor_partner(mob/living/user, key)
 	var/mob/living/carbon/human/partner = new()

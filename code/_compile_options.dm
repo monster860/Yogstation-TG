@@ -31,14 +31,6 @@
 #define FORCE_MAP "_maps/runtimestation.json"
 #endif
 
-//Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 513
-#if DM_VERSION < MIN_COMPILER_VERSION
-//Don't forget to update this part
-#error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513 or higher
-#endif
-
 //Additional code for the above flags.
 #ifdef TESTING
 #warn compiling in TESTING mode. testing() debug messages will be visible.
@@ -57,11 +49,3 @@
 #endif
 
 #define EXTOOLS (world.system_type == MS_WINDOWS ? "byond-extools.dll" : "libbyond-extools.so")
-
-#if (DM_VERSION == 513) && (DM_BUILD == 1537)
-#error ============WARNING===============
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error BYOND version 513.1537 contains a bug that prevents the codebase from compiling properly. Please upgrade/downgrade your BYOND version
-#error ==================================
-#endif

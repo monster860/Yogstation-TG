@@ -231,7 +231,7 @@
 			if (!stopcount)
 				the_radio.talk_into(src, "Beginning launch on coordinates [tcoords]. ETA: [countdown] seconds.",)
 				tick = countdown + 1
-				countdown()
+				do_countdown()
 			else
 				the_radio.talk_into(src, "Launch sequence aborted by [usr]. Adjusting mainframe...",)
 				reset_lam()

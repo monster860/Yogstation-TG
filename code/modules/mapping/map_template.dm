@@ -6,6 +6,7 @@
 	var/loaded = 0 // Times loaded this round
 	var/datum/parsed_map/cached_map
 	var/keep_cached_map = FALSE
+	var/size_avail = 0
 
 /datum/map_template/New(path = null, rename = null, cache = FALSE)
 	if(path)
@@ -17,6 +18,8 @@
 
 /datum/map_template/proc/preload_size(path, cache = FALSE)
 	var/datum/parsed_map/parsed = new(file(path))
+	UNTIL(parsed.parsing_done)
+	size_avail = 1
 	var/bounds = parsed?.bounds
 	if(bounds)
 		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1

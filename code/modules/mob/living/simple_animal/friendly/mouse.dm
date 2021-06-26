@@ -23,7 +23,7 @@ GLOBAL_VAR_INIT(mouse_killed, 0)
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
-	speak = list("Squeak!","SQUEAK!","Squeak?")
+	speak_list = list("Squeak!","SQUEAK!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("squeaks.")
 	emote_see = list("runs in a circle.", "shakes.")

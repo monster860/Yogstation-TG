@@ -90,7 +90,7 @@
 	minbodytemp = 0
 	eggsleft = 0
 	egg_type = null
-	speak = list()
+	speak_list = list()
 
 /*Cabin's forest*/
 /datum/mapGenerator/snowy

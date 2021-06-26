@@ -47,8 +47,4 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 				expected_global_procs -= replacetext("[I]", "InitGlobal", "")
 			log_world("Missing procs: [expected_global_procs.Join(", ")]")
 	for(var/I in global_procs)
-		var/start_tick = world.time
 		call(src, I)()
-		var/end_tick = world.time
-		if(end_tick - start_tick)
-			warning("Global [replacetext("[I]", "InitGlobal", "")] slept during initialization!")

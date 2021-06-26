@@ -11,7 +11,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 5
 	attacktext = "claws"
-	speak = list("Meow!", "Esp!", "Purr!", "HSSSSS")
+	speak_list = list("Meow!", "Esp!", "Purr!", "HSSSSS")
 	speak_emote = list("purrs", "meows")
 	emote_hear = list("meows", "mews")
 	speak_chance = 1

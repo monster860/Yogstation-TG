@@ -422,7 +422,7 @@
 			var/obj/item/heldItem = itemUser.get_item_for_held_index(hand)
 			if(heldItem == null || heldItem.type != /obj/item/rod_of_asclepius) //Checks to make sure the rod is still in their hand
 				var/obj/item/rod_of_asclepius/newRod = new(itemUser.loc)
-				newRod.activated()
+				newRod.activate()
 				if(!itemUser.has_hand_for_held_index(hand))
 					//If user does not have the corresponding hand anymore, give them one and return the rod to their hand
 					if(((hand % 2) == 0))

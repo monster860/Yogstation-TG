@@ -6,7 +6,7 @@
 	icon_living = "g_shepherd"
 	icon_dead = "g_shepherd_dead"
 	gender = FEMALE
-	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
+	speak_list = list("YAP", "Woof!", "Bark!", "AUUUUUU")
 	speak_emote = list("barks", "woofs")
 	emote_hear = list("barks", "woofs", "yaps","pants")
 	emote_see = list("shakes its head", "shivers")
